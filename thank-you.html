@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmed — The Last Giro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center}
+.tick{font-size:4rem;margin-bottom:1rem}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,5rem);color:var(--yellow);line-height:0.9;margin-bottom:1rem}
+.sub{font-size:1.1rem;color:#999;max-width:520px;margin-bottom:2.5rem;line-height:1.75}
+.sub strong{color:var(--white)}
+.steps{background:var(--grey);border:1px solid var(--border);border-top:3px solid var(--yellow);padding:2rem;max-width:520px;width:100%;text-align:left;margin-bottom:2rem}
+.steps-title{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.5rem}
+.step{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;font-size:0.9rem;color:#bbb}
+.step:last-child{margin:0}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--border);line-height:1;flex-shrink:0;width:2rem}
+.step strong{color:var(--white);display:block;margin-bottom:0.2rem}
+.email-btn{display:inline-block;background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;margin-bottom:1rem}
+.home-btn{display:inline-block;background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 2rem;text-decoration:none;border:1px solid var(--border)}
+.home-btn:hover{color:var(--yellow);border-color:var(--yellow)}
+footer{margin-top:3rem;font-family:'DM Mono',monospace;font-size:0.6rem;color:#333;text-align:center;line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="tick">✅</div>
+<h1>Payment<br>Confirmed!</h1>
+<p class="sub">Thank you for purchasing The Last Giro. <strong>Your course files will be emailed to you within 24 hours.</strong> Here's what to do now:</p>
+
+<div class="steps">
+  <div class="steps-title">Next Steps</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <strong>Email us your payment confirmation</strong>
+      Send your Stripe payment confirmation email to hello@thelastgiro.com — include your name and the email address you want the course sent to.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <strong>We send your course files</strong>
+      Within 24 hours we'll email you all 11 module files plus instructions on how to access them.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <strong>Gold Community members</strong>
+      If you purchased the Gold Community — we'll also send you your unique access code for the members area and add you to the WhatsApp group.
+    </div>
+  </div>
+</div>
+
+<a href="mailto:hello@thelastgiro.com?subject=Course%20Purchase%20Confirmation&body=Hi%20Christopher%2C%0A%0AI%20have%20just%20purchased%20The%20Last%20Giro.%20Please%20find%20my%20payment%20confirmation%20attached.%0A%0AMy%20name%3A%20%0AMy%20email%3A%20%0A%0AThanks!" class="email-btn">📧 Email Confirmation Now →</a>
+<br>
+<a href="index.html" class="home-btn">← Back to Homepage</a>
+
+<footer>
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff
+</footer>
+
+</body>
+</html>

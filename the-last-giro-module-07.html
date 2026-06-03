@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 07: The AI Tool Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 07 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 07 of 11</div>
+  <div class="mod-num">07</div>
+  <h1>The AI Tool Stack</h1>
+  <p class="mod-intro">17 tools. Almost all free. This is your virtual team — no salaries, no sick days, no HR. One person running a professional business from a phone for under £25 a month.</p>
+</div>
+
+<table class="data">
+<thead><tr><th>Tool</th><th>Replaces</th><th>Cost</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>Claude</strong></td><td>Copywriter / strategist</td><td>Free / £15pm</td><td>Writing, strategy, emails, scripts, business plans, course content</td></tr>
+<tr><td><strong>DeepSeek</strong></td><td>ChatGPT paid</td><td>Free</td><td>Fast, capable AI — use as backup or instead of Claude</td></tr>
+<tr><td><strong>Gemini</strong></td><td>Research assistant</td><td>Free</td><td>Google-connected AI — real-time research and summaries</td></tr>
+<tr><td><strong>Microsoft Designer</strong></td><td>Graphic designer</td><td>Free</td><td>Professional graphics, social posts, logos, flyers — no design skill needed</td></tr>
+<tr><td><strong>Adobe Express</strong></td><td>Paid design software</td><td>Free / £9pm</td><td>Templates, branding, reels, social content</td></tr>
+<tr><td><strong>Nano Banana</strong></td><td>Midjourney</td><td>Free</td><td>AI image generation — product mockups, social visuals</td></tr>
+<tr><td><strong>Super Whisper</strong></td><td>Transcription service</td><td>~£8pm</td><td>Speak your content — it types for you. Game-changer on mobile.</td></tr>
+<tr><td><strong>Agent Opus Clip</strong></td><td>Video editor</td><td>Free tier</td><td>Turns long videos into short clips automatically for TikTok / Reels</td></tr>
+<tr><td><strong>LanguageTool</strong></td><td>Grammarly</td><td>Free</td><td>Spelling, grammar, style — works in browser on everything you write</td></tr>
+<tr><td><strong>VoiceBox</strong></td><td>ElevenLabs</td><td>Free</td><td>AI voiceover for videos, courses, and ads</td></tr>
+<tr><td><strong>Kinovi</strong></td><td>Runway</td><td>Free tier</td><td>AI video generation for social content</td></tr>
+<tr><td><strong>Qwen</strong></td><td>Grok Imagine</td><td>Free</td><td>Fast AI image creation</td></tr>
+<tr><td><strong>Lyria 3</strong></td><td>Suno</td><td>Free</td><td>AI music for videos, content, branding</td></tr>
+<tr><td><strong>Meta Edits</strong></td><td>Descript</td><td>Free</td><td>Edit video by editing the text transcript — no skill needed</td></tr>
+<tr><td><strong>OpenRouter</strong></td><td>Paid API</td><td>Pay per use</td><td>Access multiple AI models at near-zero cost</td></tr>
+<tr><td><strong>Google AI Studio</strong></td><td>Lovable / app builders</td><td>Free</td><td>Build simple AI tools without coding</td></tr>
+<tr><td><strong>Sifu Yik</strong></td><td>Rundown AI</td><td>Free</td><td>AI news aggregation — stay ahead of trends</td></tr>
+</tbody>
+</table>
+
+<h2>Your Daily <span>Workflow</span></h2>
+<ul class="points">
+<li><strong>Morning (15 mins)</strong> — Open Super Whisper. Speak your post idea. Claude or DeepSeek turns it into a polished caption. Post it.</li>
+<li><strong>Client work (30–60 mins)</strong> — Claude for writing, Microsoft Designer for graphics, Agent Opus Clip for video. Deliver via WhatsApp.</li>
+<li><strong>Engagement (10 mins)</strong> — Reply personally to every comment and DM. First 50 replies matter most for reach.</li>
+</ul>
+<p><strong>Total: under 90 minutes a day</strong> to run a professional content and service business.</p>
+
+<div class="info-box green">
+<div class="info-label">Total monthly cost using ALL these tools</div>
+<p>Super Whisper ~£8 + Adobe Express if upgraded £9 = <strong>under £20/month maximum.</strong> Everything else is free. A full-time member of staff costs £1,500+ per month. You're replacing that team for the price of a takeaway.</p>
+</div>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Your Personal Tool Workflow</div>
+<p>"I run a <span class="fill">[business type]</span> from my phone. I have about <span class="fill">[X hours]</span> a day. Build me a daily workflow using only free AI tools that covers: creating content, delivering my service, and managing client communication. Under 2 hours total per day."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have downloaded or bookmarked DeepSeek and Microsoft Designer (both free, both on phone)</strong></li><li><strong>I have tried at least one AI tool to create something for my business</strong></li><li><strong>I know which 3 tools I will use daily to start</strong></li><li><strong>I have not paid for anything yet — I am starting free</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-06.html" class="nav-btn">← Module 06</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 07 of 11</span><a href="the-last-giro-module-08.html" class="nav-btn">Module 08 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

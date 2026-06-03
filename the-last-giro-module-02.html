@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 02: Your Ideal Client Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 02 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 02 of 11</div>
+  <div class="mod-num">02</div>
+  <h1>Your Ideal Client Profile</h1>
+  <p class="mod-intro">The biggest mistake new businesses make is trying to sell to everyone. Pick one person. Understand them completely. Speak directly to them. Everything follows from this.</p>
+</div>
+
+<h2>Why <span>One Person</span> Beats Everyone</h2>
+<p>When you write a post aimed at "everyone" — it lands with nobody. <strong>"Are you a Manchester plumber who's too busy on the tools to post on Instagram?"</strong> stops a Manchester plumber dead. Specificity is magnetic, not limiting.</p>
+
+<h2>Build Your <span>Client Avatar</span></h2>
+<p>Give your ideal client a name. A life. A problem. A dream. Here's the template — fill it in for YOUR business:</p>
+
+<div class="info-box yellow">
+<div class="info-label">Example Avatar — "Dave the Plumber"</div>
+<p><strong>Age:</strong> 38, self-employed, Salford. Gets all work from word of mouth.</p>
+<p><strong>Problem:</strong> Facebook page he hasn't posted on in 8 months. Quiet spells worry him.</p>
+<p><strong>What he's tried:</strong> Looked at marketing agencies — £500/month minimum. Too expensive.</p>
+<p><strong>What he wants:</strong> More enquiries without lifting a finger.</p>
+<p><strong>His exact words:</strong> "I just need someone to sort my Facebook out. I don't have time and I don't know what I'm doing."</p>
+<p><strong>What he'd pay:</strong> £50–£100/month for something that works.</p>
+</div>
+
+<p>That last line — <strong>his exact words</strong> — is your marketing copy. Use it verbatim. People read their own thoughts back to them and immediately trust you.</p>
+
+<h2>Where to <span>Find Your Client</span></h2>
+<ul class="points">
+<li><strong>Facebook Groups</strong> — Search "[your town] business" or "[your trade] UK". Be helpful first. Sell later.</li>
+<li><strong>Google Maps</strong> — Search your service + your area. Every business with no website or a bad one is a potential client.</li>
+<li><strong>Nextdoor</strong> — Local community app. Tradespeople advertise here constantly.</li>
+<li><strong>Instagram</strong> — Search local hashtags. Find businesses with poor content. They need you.</li>
+<li><strong>Word of Mouth</strong> — Tell 10 people what you're doing. One of them knows someone who needs it.</li>
+</ul>
+
+<h2>What to Say <span>When You Find Them</span></h2>
+<div class="success-box">
+<div class="success-title">Opening message template — copy this</div>
+<p>"Hi [name], I came across your [Facebook page / Google listing] and noticed [specific observation — e.g. your last post was a few months ago]. I help [type of business] with [what you do]. I'm offering a free sample this week — would that be useful to you?"</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">⚠ What NOT to do</div>
+<p>Don't send a wall of text about your services. Don't list prices in the first message. Don't say "I'm just starting out." Lead with what you noticed about THEM, not what you want from them.</p>
+</div>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Build Your Full Client Avatar</div>
+<p>"Help me build a detailed ideal client avatar for my business. I offer <span class="fill">[your service]</span> to <span class="fill">[type of business or person]</span>. Build me a full profile including: name and age, their job, their main problem, what they've already tried, what they want after I help them, where they spend time online, and the exact words they'd use to describe their problem. Make it specific and realistic."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have named my ideal client and written down their problem</strong></li><li><strong>I know where to find them — at least 2 places</strong></li><li><strong>I have written my opening message using the template above</strong></li><li><strong>I have saved my client avatar — I will use it in every module from here</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-01.html" class="nav-btn">← Module 01</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 02 of 11</span><a href="the-last-giro-module-03.html" class="nav-btn">Module 03 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

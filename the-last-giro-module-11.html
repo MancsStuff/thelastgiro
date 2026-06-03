@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 11: Tax, DWP & Keeping More Money</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 11 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 11 of 11</div>
+  <div class="mod-num">11</div>
+  <h1>Tax, DWP & Keeping More Money</h1>
+  <p class="mod-intro">The module that changes everything. Most people on benefits leave hundreds of pounds a month on the table because they don't know what they can legally deduct. This is the honest, practical guide — based on real experience.</p>
+</div>
+
+<div class="success-box">
+<div class="success-title">The Golden Rule — Memorise This</div>
+<p>You report <strong>PROFIT — not income — to both HMRC and the DWP.</strong></p>
+<p>Profit = Money received MINUS allowable business expenses.</p>
+<p>Every legitimate expense you claim reduces your taxable income AND reduces the earnings DWP uses to calculate your UC. Done properly, expenses don't just save tax — they directly increase your Universal Credit every month.</p>
+</div>
+
+<h2>UC Taper — <span>The Real Maths</span></h2>
+<p>DWP takes 55p of every £1 of profit over your work allowance. The taper applies to PROFIT — not income. Expenses make the difference.</p>
+
+<div class="info-box green">
+<div class="info-label">Worked example — real numbers</div>
+<p>Gumroad course sales income: £320.00</p>
+<p>Less Gumroad fees (10%): -£32.00</p>
+<p>Less Super Whisper subscription: -£8.00</p>
+<p>Less phone bill (50% business): -£12.50</p>
+<p>Less home office flat rate (26hrs): -£10.00</p>
+<p>Less this course purchase (training): -£9.99</p>
+<p><strong>━━━━━━━━━━━━━━━━━━━━━━━</strong></p>
+<p><strong>Profit to report to DWP: £247.51 — not £320</strong></p>
+<p>That £72.49 difference in expenses saves you £39.87 in UC (at 55% taper). Every month. Forever.</p>
+</div>
+
+<h2>Every Allowable <span>Expense</span></h2>
+
+<h3>Technology & Equipment</h3>
+<ul class="points">
+<li>Your smartphone — the business-use proportion (e.g. 50% if used half for work)</li>
+<li>Laptop or tablet — business-use proportion</li>
+<li>Headphones, ring light, tripod, phone stand — if bought for business</li>
+</ul>
+
+<h3>Software & Subscriptions</h3>
+<ul class="points">
+<li>Super Whisper (~£8/month) — fully deductible</li>
+<li>Adobe Express paid tier — fully deductible</li>
+<li>Any paid AI tool subscription used for business</li>
+<li>Gumroad or Payhip fees — cost of sale, fully deductible</li>
+<li>Website hosting, domain costs</li>
+<li><strong>This course (The Last Giro £9.99) — yes, it is a deductible business expense</strong></li>
+</ul>
+
+<h3>Home Office — Use of Home</h3>
+<p>HMRC simplified flat rate — no receipts needed, just record your hours:</p>
+<ul class="points">
+<li>25–50 hours business use per month = £10/month</li>
+<li>51–100 hours per month = £18/month</li>
+<li>101+ hours per month = £26/month</li>
+</ul>
+
+<h3>Phone & Broadband</h3>
+<ul class="points">
+<li>Home broadband — claim the business-use proportion (e.g. 40%)</li>
+<li>Mobile phone contract — business-use proportion</li>
+</ul>
+
+<h3>What You Cannot Claim</h3>
+<ul class="points">
+<li>Personal food and drink</li>
+<li>Clothing (unless a uniform)</li>
+<li>Personal entertainment, gym, holidays</li>
+<li>The full cost of something used partly personally — business proportion only</li>
+</ul>
+
+<h2>DWP Monthly Reporting — <span>Exact Steps</span></h2>
+<p>Do this on the <strong>26th of every month</strong>. Set a phone alarm now.</p>
+
+<ul class="points">
+<li><strong>Step 1</strong> — Add up all income received in your assessment period (27th–26th)</li>
+<li><strong>Step 2</strong> — Add up all allowable expenses from your expenses spreadsheet</li>
+<li><strong>Step 3</strong> — Subtract: income minus expenses = profit</li>
+<li><strong>Step 4</strong> — Log into your UC online account</li>
+<li><strong>Step 5</strong> — Go to your journal, add a note or report earnings as prompted</li>
+<li><strong>Step 6</strong> — Report the PROFIT figure — not the income figure</li>
+<li><strong>Step 7</strong> — Screenshot the confirmation page and save to Google Drive</li>
+</ul>
+
+<div class="success-box">
+<div class="success-title">Exact wording to use in your UC journal</div>
+<p>"Self-employed income this assessment period: £[income]. Allowable business expenses: £[expenses]. Net profit to declare: £[profit]. Business name: [your business name]. Nature of business: [what you do]."</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Minimum Income Floor — Know This Before Month 12</div>
+<p>After 12 months of self-employment, DWP may apply the Minimum Income Floor — an assumed earnings level based on National Living Wage. If your actual profit is below this, they calculate your UC as if you earned the MIF amount. Does NOT apply in your first 12 months. May not apply if you have a health condition. Ask your work coach before month 12.</p>
+</div>
+
+<h2>Self Assessment — <span>Annual Tax Return</span></h2>
+<ul class="points">
+<li><strong>5 April</strong> — end of tax year</li>
+<li><strong>31 January</strong> — online filing deadline</li>
+<li>No tax on first <strong>£12,570 profit</strong> (Personal Allowance)</li>
+<li>20% Income Tax on profit between £12,571 and £50,270</li>
+<li>Class 4 NI: 9% on profit above £12,570</li>
+<li><strong>If your annual profit is under £12,570 — you pay zero Income Tax</strong></li>
+</ul>
+
+<h2>Free Help</h2>
+<ul class="points">
+<li><strong>HMRC helpline</strong> — 0300 200 3310 — free, they are genuinely helpful</li>
+<li><strong>Citizens Advice</strong> — citizensadvice.org.uk — free welfare and tax advice</li>
+<li><strong>Low Incomes Tax Reform Group</strong> — litrg.org.uk — excellent free guidance</li>
+<li><strong>Turn2us</strong> — turn2us.org.uk — benefits calculator and support</li>
+</ul>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Calculate Your Monthly Profit for DWP</div>
+<p>"Help me calculate my profit to report to Universal Credit this month. My total income received was £<span class="fill">[amount]</span>. My expenses this month: <span class="fill">[list each expense and amount]</span>. Calculate my profit, confirm which expenses are allowable under HMRC rules for a sole trader, and give me the exact figure to report to DWP."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have set a recurring alarm on my phone for the 26th of every month: 'UC Report Due'</strong></li><li><strong>I have created a Google Drive folder called 'Business Expenses [Year]'</strong></li><li><strong>I have set up a Google Sheet to track income and expenses monthly</strong></li><li><strong>I understand the difference between income and profit and will always report profit to DWP</strong></li><li><strong>I know the exact words to use when reporting to my UC journal</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-10.html" class="nav-btn">← Module 10</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 11 of 11</span><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Course Complete ✓</span></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 03: Products to Create & Launch</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 03 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 03 of 11</div>
+  <div class="mod-num">03</div>
+  <h1>Products to Create & Launch</h1>
+  <p class="mod-intro">One free offer to build trust. One paid offer to earn money. One recurring offer for stability. This module also covers the single most important rule before you name anything.</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Critical Rule — Check the Name BEFORE You Build Anything</div>
+<p>Before you name your business, your course, your service — <strong>check it is available everywhere.</strong> Building something under a name that's already taken costs hours of wasted work and forces you to start again.</p>
+<p>Check these in order: Google search, Companies House (companieshouse.gov.uk), Teachable, Skool, Gumroad, TikTok, Instagram, Facebook. If it exists anywhere — pick a different name.</p>
+<p><strong>This lesson was learned the hard way. Don't repeat it.</strong></p>
+</div>
+
+<h2>The <span>Three-Layer</span> Business</h2>
+<ul class="points">
+<li><strong>Layer 1 — Free offer</strong> — Solves a small real problem at zero cost. Builds trust. Gets you in front of people. Takes 20–30 minutes using AI.</li>
+<li><strong>Layer 2 — Paid offer</strong> — One clear thing. One clear price. One clear outcome. Simple enough to explain in one sentence.</li>
+<li><strong>Layer 3 — Recurring offer</strong> — Monthly retainer or subscription. Even 3 clients at £50/month = £150 guaranteed every month. This builds stability.</li>
+</ul>
+
+<h2>Pricing — <span>What to Charge</span></h2>
+<table class="data">
+<thead><tr><th>Service</th><th>Price range</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>Social media posts (10/month)</td><td><strong>£50–£150</strong></td><td>Monthly retainer</td></tr>
+<tr><td>Flyer or graphic</td><td><strong>£20–£60</strong></td><td>One-off</td></tr>
+<tr><td>Website copywriting</td><td><strong>£75–£200</strong></td><td>One-off per page</td></tr>
+<tr><td>Email newsletter</td><td><strong>£30–£75</strong></td><td>Monthly retainer</td></tr>
+<tr><td>Google Business setup</td><td><strong>£30–£75</strong></td><td>One-off</td></tr>
+<tr><td>Product descriptions (x5)</td><td><strong>£30–£80</strong></td><td>One-off</td></tr>
+<tr><td>CV rewrite</td><td><strong>£25–£60</strong></td><td>One-off</td></tr>
+<tr><td>Full social media management</td><td><strong>£100–£300</strong></td><td>Monthly retainer</td></tr>
+</tbody>
+</table>
+
+<p>Start at the <strong>lower end</strong> while building confidence. Raise prices by 20–30% after your first 3 happy clients. Never work for free beyond your initial free sample.</p>
+
+<h2>Naming Your <span>Offer</span></h2>
+<div class="info-box green">
+<div class="info-label">Good offer name formula</div>
+<p>[Number or frequency] + [Specific deliverable] + [For who] + [Outcome]</p>
+<p style="margin-top:.5rem"><em>"10 social posts a month for local tradespeople — so your phone keeps ringing even when you're on a job."</em></p>
+</div>
+
+<h2>Your First <span>Free Sample</span></h2>
+<ul class="points">
+<li><strong>One free social media post</strong> — designed and written, ready to publish. 20 minutes with AI.</li>
+<li><strong>A free rewrite of their bio</strong> — 30 minutes, immediately shows the difference.</li>
+<li><strong>One free graphic</strong> — business card, flyer header, social banner. 20 minutes in Microsoft Designer.</li>
+</ul>
+
+<div class="info-box yellow">
+<div class="info-label">The free sample rule</div>
+<p>Do the free sample. Get their reaction. If they're happy, ask: "I charge £[price] a month for ongoing work like this — would that be useful?" That's the entire sales process.</p>
+</div>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Design Your Three Offers</div>
+<p>"I help <span class="fill">[your ideal client]</span> with <span class="fill">[your skill]</span>. Design three offers for me: (1) a free sample I can deliver in under 30 minutes using AI, (2) a core paid offer priced between £<span class="fill">[low]</span> and £<span class="fill">[high]</span> with a specific deliverable and one-sentence description, (3) a monthly recurring offer with everything included and a monthly price."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have checked my business name is available on Google, Companies House, TikTok, Instagram, Facebook, Gumroad</strong></li><li><strong>I have written my free sample offer — what it is and how long it takes</strong></li><li><strong>I have written my paid offer — what it is, what it costs, one sentence description</strong></li><li><strong>I have written my recurring offer — what's included and the monthly price</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-02.html" class="nav-btn">← Module 02</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 03 of 11</span><a href="the-last-giro-module-04.html" class="nav-btn">Module 04 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

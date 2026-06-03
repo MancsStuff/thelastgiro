@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 10: Your One-Page Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 10 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 10 of 11</div>
+  <div class="mod-num">10</div>
+  <h1>Your One-Page Pitch</h1>
+  <p class="mod-intro">When someone asks what you do — you send them this. One page. No waffle. Generated by AI in 5 minutes. This is the document that turns conversations into clients.</p>
+</div>
+
+<h2>The Eight <span>Elements</span></h2>
+<ul class="points">
+<li><strong>Your name and what you do</strong> — one sentence, plain English, zero jargon</li>
+<li><strong>Who you help</strong> — specific type of person or business, not "everyone"</li>
+<li><strong>The problem you solve</strong> — in their words, not yours</li>
+<li><strong>What you offer</strong> — 1 or 2 services, simply explained</li>
+<li><strong>What it costs</strong> — be upfront, saves everyone's time and builds trust immediately</li>
+<li><strong>What they get as an outcome</strong> — not features. Results.</li>
+<li><strong>One testimonial</strong> — even one sentence doubles conversion rate</li>
+<li><strong>How to start</strong> — one clear next step. "Message me on WhatsApp for a free 15-minute chat."</li>
+</ul>
+
+<h2>Three <span>Templates</span> — Pick Yours</h2>
+
+<div class="success-box">
+<div class="success-title">Template 1 — Service Business (social media, writing, design)</div>
+<p>"Hi, I'm [name]. I help [local businesses / tradespeople] in [area] with [service] so they can [outcome].</p>
+<p>I [what you do specifically] for £[price]/month. No contracts. Cancel any time.</p>
+<p>[Client name] said: '[one line testimonial]'</p>
+<p>Happy to do one free [sample] so you can see the quality first. Message me on WhatsApp: [number]."</p>
+</div>
+
+<div class="info-box yellow">
+<div class="info-label">Template 2 — Freelance / one-off work</div>
+<p>"I'm [name]. I help [client type] with [specific task] using AI tools. Whether it's [example 1], [example 2], or [example 3] — I deliver fast, professional results.</p>
+<p>One-off projects from £[price]. Most turned around within 48 hours.</p>
+<p>Free sample available. Email: [email] or WhatsApp: [number]."</p>
+</div>
+
+<div class="info-box orange">
+<div class="info-label">Template 3 — Course or knowledge business</div>
+<p>"I'm [name]. I teach [type of person] how to [main outcome] using [method / tools].</p>
+<p>[Course name] — [what's included] — £[price]. Everything you need to [result], step by step.</p>
+<p>Module 1 is completely free — no email required. Start there and judge for yourself.</p>
+<p>[Link to free module]"</p>
+</div>
+
+<h2>Build It in <span>Microsoft Designer</span></h2>
+<ul class="points">
+<li>Generate your copy using the AI prompt below</li>
+<li>Open Microsoft Designer — search for "one-page flyer" or "services brochure" template</li>
+<li>Paste your copy in — adjust colours to match your brand</li>
+<li>Export as PDF</li>
+<li>Send on WhatsApp. Pin to social profiles. Use everywhere.</li>
+</ul>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Write Your Pitch Right Now</div>
+<p>"Write a one-page pitch for my business. I do <span class="fill">[service]</span> for <span class="fill">[client type]</span> in <span class="fill">[area or online]</span>. My offer is <span class="fill">[what's included]</span> for £<span class="fill">[price]</span>. Main outcome: <span class="fill">[result]</span>. Use this structure: name and what I do, who I help, the problem, the offer, the price, the outcome, a testimonial placeholder, call to action. Under 200 words. Direct. No corporate speak."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have generated my one-page pitch using the AI prompt</strong></li><li><strong>I have turned it into a PDF using Microsoft Designer or Adobe Express</strong></li><li><strong>I have saved it on my phone ready to send at any moment</strong></li><li><strong>I have sent it to at least one potential client or pinned it to my social profile</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-09.html" class="nav-btn">← Module 09</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 10 of 11</span><a href="the-last-giro-module-11.html" class="nav-btn">Module 11 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

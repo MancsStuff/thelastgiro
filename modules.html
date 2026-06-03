@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Modules — The Last Giro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7}
+.topbar{background:var(--black);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--yellow);text-decoration:none}
+.back{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--yellow)}
+
+/* ACCESS GATE */
+.gate{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.gate h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);color:var(--white);margin-bottom:0.5rem}
+.gate h1 span{color:var(--yellow)}
+.gate p{color:var(--muted);font-size:0.95rem;max-width:440px;margin-bottom:2rem;line-height:1.7}
+.gate p strong{color:var(--white)}
+.gate-box{background:var(--grey);border:1px solid var(--border);border-top:3px solid var(--yellow);padding:2rem;max-width:400px;width:100%}
+.gate-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:1rem;display:block}
+.gate-input{width:100%;background:#080808;border:1px solid var(--border);color:var(--white);font-family:'DM Mono',monospace;font-size:1rem;padding:0.85rem 1rem;outline:none;margin-bottom:0.75rem;letter-spacing:0.2em;text-align:center}
+.gate-input:focus{border-color:var(--yellow)}
+.gate-btn{width:100%;background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;border:none;cursor:pointer}
+.gate-err{color:var(--red);font-family:'DM Mono',monospace;font-size:0.72rem;margin-top:0.75rem;display:none}
+.gate-note{font-size:0.78rem;color:var(--muted);margin-top:1rem;font-style:italic}
+
+/* COURSE CONTENT */
+.course-content{display:none;max-width:900px;margin:0 auto;padding:3rem 1.5rem}
+.welcome-bar{background:var(--grey);border:1px solid var(--border);border-left:4px solid var(--green);padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+.welcome-bar p{font-size:0.9rem;color:#ccc}
+.welcome-bar strong{color:var(--white)}
+.sec-tag{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.5rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.5rem);color:var(--white);line-height:0.95;margin-bottom:2rem}
+.sec-title span{color:var(--yellow)}
+.modules-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-bottom:3rem}
+.module-row{background:var(--grey);display:grid;grid-template-columns:3.5rem 1fr auto;gap:1.25rem;align-items:center;padding:1.25rem 1.5rem;text-decoration:none;transition:background 0.2s;border-left:3px solid transparent}
+.module-row:hover{background:#1e1e1e;border-left-color:var(--yellow)}
+.module-row.free-mod{border-left-color:var(--green)}
+.mod-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--border);line-height:1}
+.mod-info{}
+.mod-title{font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:0.2rem}
+.mod-desc{font-size:0.82rem;color:var(--muted)}
+.mod-badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:1px;white-space:nowrap}
+.mod-badge.free{background:#0a2a0a;color:var(--green);border:1px solid #1a4a1a}
+.mod-badge.core{background:#2a2000;color:var(--yellow);border:1px solid #4a3a00}
+.mod-badge.bonus{background:#2a0a0a;color:var(--red);border:1px solid #4a1a1a}
+.mod-badge.locked{background:#1a1a1a;color:var(--muted);border:1px solid var(--border)}
+.upgrade-bar{background:#0f0800;border:2px solid var(--yellow);padding:1.5rem;text-align:center;margin-top:1rem}
+.upgrade-bar p{font-size:0.9rem;color:#bbb;margin-bottom:1rem}
+.upgrade-bar strong{color:var(--white)}
+.upgrade-btn{display:inline-block;background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none}
+footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.6rem;color:#333;text-align:center;line-height:1.8}
+@media(max-width:600px){.module-row{grid-template-columns:2.5rem 1fr}.mod-badge{display:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="logo">The Last Giro</a>
+  <a href="index.html" class="back">← Home</a>
+</div>
+
+<!-- ACCESS GATE -->
+<div class="gate" id="gate">
+  <h1>Access Your<br><span>Course</span></h1>
+  <p>Enter the access code from your course confirmation email. <strong>Purchased via Gumroad?</strong> Your files were emailed directly — no code needed.</p>
+  <div class="gate-box">
+    <span class="gate-label">Enter Your Access Code</span>
+    <input type="text" class="gate-input" id="codeInput" placeholder="XXXXXXXX" maxlength="12" autocomplete="off">
+    <button class="gate-btn" onclick="checkCode()">Access Course →</button>
+    <div class="gate-err" id="gateErr">Invalid code. Check your confirmation email or contact hello@thelastgiro.com</div>
+    <p class="gate-note">Purchased via Gumroad? <a href="https://girotastic.gumroad.com/l/thelastgiro-fullcourse" style="color:var(--yellow)">Download your files here →</a></p>
+  </div>
+</div>
+
+<!-- COURSE CONTENT (shown after correct code) -->
+<div class="course-content" id="courseContent">
+  <div class="welcome-bar">
+    <p>✅ <strong>Welcome to The Last Giro.</strong> All 11 modules are below. Work through them in order. Each one ends with a checklist — tick everything off before moving on.</p>
+  </div>
+
+  <div class="sec-tag">Your Course</div>
+  <h2 class="sec-title">All <span>11 Modules</span></h2>
+
+  <div class="modules-grid">
+    <a href="the-last-giro-module-01.html" class="module-row free-mod">
+      <div class="mod-num">01</div>
+      <div class="mod-info"><div class="mod-title">The Opportunity & The Numbers</div><div class="mod-desc">UC taper rate, expenses trick, what to do before your first sale</div></div>
+      <span class="mod-badge free">Free</span>
+    </a>
+    <a href="the-last-giro-module-02.html" class="module-row">
+      <div class="mod-num">02</div>
+      <div class="mod-info"><div class="mod-title">Your Ideal Client Profile</div><div class="mod-desc">Find the exact person who needs you and speak directly to them</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-03.html" class="module-row">
+      <div class="mod-num">03</div>
+      <div class="mod-info"><div class="mod-title">Products to Create & Launch</div><div class="mod-desc">Free offer, paid offer, recurring income — plus the name availability rule</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-04.html" class="module-row">
+      <div class="mod-num">04</div>
+      <div class="mod-info"><div class="mod-title">Benefits, Results & Transformations</div><div class="mod-desc">The marketing language that sells — written by AI in your voice</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-05.html" class="module-row">
+      <div class="mod-num">05</div>
+      <div class="mod-info"><div class="mod-title">The Funnel & Client Journey</div><div class="mod-desc">Stranger to paying client — the 4-step system</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-06.html" class="module-row">
+      <div class="mod-num">06</div>
+      <div class="mod-info"><div class="mod-title">The 90-Day Marketing Plan</div><div class="mod-desc">Month by month plan, content ideas, AI-assisted posting schedule</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-07.html" class="module-row">
+      <div class="mod-num">07</div>
+      <div class="mod-info"><div class="mod-title">The AI Tool Stack</div><div class="mod-desc">17 free tools, what each does, daily workflow under 90 minutes</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-08.html" class="module-row">
+      <div class="mod-num">08</div>
+      <div class="mod-info"><div class="mod-title">Your Landing Page</div><div class="mod-desc">Fill-in-the-blanks template — built with free tools, live today</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-09.html" class="module-row">
+      <div class="mod-num">09</div>
+      <div class="mod-info"><div class="mod-title">CRM & Tech Setup</div><div class="mod-desc">Exact setup order — every trap flagged, free tools only</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-10.html" class="module-row">
+      <div class="mod-num">10</div>
+      <div class="mod-info"><div class="mod-title">Your One-Page Pitch</div><div class="mod-desc">AI-generated in 5 minutes — turns conversations into clients</div></div>
+      <span class="mod-badge core">Core</span>
+    </a>
+    <a href="the-last-giro-module-11.html" class="module-row">
+      <div class="mod-num">11</div>
+      <div class="mod-info"><div class="mod-title">Tax, DWP & Keeping More Money</div><div class="mod-desc">Every allowable expense, UC reporting exact steps, Self Assessment</div></div>
+      <span class="mod-badge bonus">Bonus</span>
+    </a>
+  </div>
+
+  <div class="upgrade-bar" id="upgradeBar" style="display:none">
+    <p>Want direct support, monthly live Q&As, and a community of people building alongside you? <strong>Upgrade to Gold.</strong></p>
+    <a href="https://girotastic.gumroad.com/l/thelastgiro-gold" class="upgrade-btn" target="_blank">Upgrade to Gold — £29.99/month →</a>
+  </div>
+
+  <footer>
+    The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+    hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; ICO: 00013889232<br>
+    © 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+  </footer>
+</div>
+
+<script>
+// Valid access codes - you add new ones here when students buy via Stripe
+// Format: 'CODE': 'type' (full or gold)
+const validCodes = {
+  'WELCOME': 'full',
+  'LASTGIRO1': 'full',
+};
+
+function checkCode() {
+  const code = document.getElementById('codeInput').value.trim().toUpperCase();
+  const err = document.getElementById('gateErr');
+  
+  if (validCodes[code]) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('courseContent').style.display = 'block';
+    sessionStorage.setItem('tlg_access', validCodes[code]);
+    
+    // Show upgrade bar for full (non-gold) members
+    if (validCodes[code] === 'full') {
+      document.getElementById('upgradeBar').style.display = 'block';
+    }
+    
+    // Scroll to top
+    window.scrollTo(0,0);
+  } else {
+    err.style.display = 'block';
+    document.getElementById('codeInput').style.borderColor = '#e02020';
+  }
+}
+
+// Allow enter key
+document.getElementById('codeInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkCode();
+});
+
+// Check if already logged in this session
+if (sessionStorage.getItem('tlg_access')) {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('courseContent').style.display = 'block';
+}
+</script>
+</body>
+</html>

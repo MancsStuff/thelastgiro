@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — The Last Giro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;min-height:100vh}
+
+/* LOGIN */
+.login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.login h1{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--yellow);margin-bottom:0.5rem}
+.login p{color:var(--muted);font-size:0.9rem;margin-bottom:2rem}
+.login-box{background:var(--grey);border:1px solid var(--border);border-top:3px solid var(--red);padding:2rem;max-width:360px;width:100%}
+.login-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;display:block}
+.login-input{width:100%;background:#080808;border:1px solid var(--border);color:var(--white);font-family:'DM Mono',monospace;font-size:1rem;padding:0.85rem 1rem;outline:none;margin-bottom:0.75rem;text-align:center;letter-spacing:0.1em}
+.login-input:focus{border-color:var(--red)}
+.login-btn{width:100%;background:var(--red);color:var(--white);font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;border:none;cursor:pointer}
+.login-err{color:var(--red);font-family:'DM Mono',monospace;font-size:0.7rem;margin-top:0.75rem;display:none}
+
+/* ADMIN PANEL */
+.admin{display:none;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+.admin-header h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--red)}
+.logout-btn{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--border);padding:0.4rem 0.9rem;cursor:pointer}
+.logout-btn:hover{color:var(--red);border-color:var(--red)}
+
+.panel{background:var(--grey);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+.panel-title{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.25rem}
+.panel-title.red{color:var(--red)}
+
+.code-type-row{display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.type-btn{flex:1;padding:0.75rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;border:2px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;min-width:120px}
+.type-btn.active{border-color:var(--yellow);color:var(--yellow);background:#1a1a00}
+.type-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+
+.gen-btn{background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.9rem 2rem;border:none;cursor:pointer;width:100%;margin-top:0.75rem}
+
+.result-box{background:#0a0a0a;border:1px solid var(--border);padding:1.25rem;margin-top:1rem;display:none}
+.result-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem}
+.result-code{font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--white);letter-spacing:0.15em;margin-bottom:0.75rem}
+.result-type{font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem}
+.copy-btn{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--green);color:var(--green);padding:0.4rem 0.9rem;cursor:pointer}
+.copy-btn:hover{background:var(--green);color:#000}
+
+.email-template{background:#0a0a0a;border:1px solid var(--border);padding:1.25rem;margin-top:1rem}
+.email-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.75rem}
+.email-body{font-size:0.82rem;color:#bbb;line-height:1.7;white-space:pre-wrap;font-family:'DM Mono',monospace}
+
+.codes-list{display:flex;flex-direction:column;gap:0.5rem;max-height:300px;overflow-y:auto}
+.code-item{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:#0a0a0a;border:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.78rem}
+.code-item .code{color:var(--white)}
+.code-item .type{color:var(--muted);font-size:0.65rem}
+.code-item .date{color:var(--muted);font-size:0.62rem}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1.5rem}
+.stat-box{background:var(--grey);padding:1.25rem;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--yellow);line-height:1}
+.stat-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="loginScreen">
+  <h1>Admin Panel</h1>
+  <p>The Last Giro — Christopher only</p>
+  <div class="login-box">
+    <span class="login-label">Admin Password</span>
+    <input type="password" class="login-input" id="adminPass" placeholder="••••••••">
+    <button class="login-btn" onclick="adminLogin()">Login →</button>
+    <div class="login-err" id="loginErr">Wrong password.</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin" id="adminPanel">
+  <div class="admin-header">
+    <h1>⚙ Admin Panel</h1>
+    <button class="logout-btn" onclick="adminLogout()">Logout</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num" id="totalCodes">0</div><div class="stat-label">Total Codes</div></div>
+    <div class="stat-box"><div class="stat-num" id="fullCodes">0</div><div class="stat-label">Full Course</div></div>
+    <div class="stat-box"><div class="stat-num" id="goldCodes">0</div><div class="stat-label">Gold Members</div></div>
+  </div>
+
+  <!-- GENERATE CODE -->
+  <div class="panel">
+    <div class="panel-title">Generate New Access Code</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.25rem">Select the type then generate. Send the code to the student with the email template below.</p>
+    
+    <div class="code-type-row">
+      <button class="type-btn active" id="btn-full" onclick="selectType('full')">📚 Full Course</button>
+      <button class="type-btn" id="btn-gold" onclick="selectType('gold')">⭐ Gold Member</button>
+    </div>
+    
+    <button class="gen-btn" onclick="generateCode()">Generate Access Code →</button>
+    
+    <div class="result-box" id="resultBox">
+      <div class="result-label">✓ New Code Generated</div>
+      <div class="result-code" id="generatedCode"></div>
+      <div class="result-type" id="generatedType"></div>
+      <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+    </div>
+
+    <div class="email-template" id="emailTemplate" style="display:none">
+      <div class="email-label">Email Template — Copy & Send to Student</div>
+      <div class="email-body" id="emailBody"></div>
+    </div>
+  </div>
+
+  <!-- ALL CODES -->
+  <div class="panel">
+    <div class="panel-title">All Generated Codes</div>
+    <div class="codes-list" id="codesList">
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic">No codes generated yet.</p>
+    </div>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="panel">
+    <div class="panel-title">Quick Links</div>
+    <div style="display:flex;flex-direction:column;gap:0.5rem">
+      <a href="index.html" style="color:var(--yellow);font-family:'DM Mono',monospace;font-size:.8rem;text-decoration:none">→ Homepage</a>
+      <a href="gold.html" style="color:var(--yellow);font-family:'DM Mono',monospace;font-size:.8rem;text-decoration:none">→ Gold Members Area</a>
+      <a href="modules.html" style="color:var(--yellow);font-family:'DM Mono',monospace;font-size:.8rem;text-decoration:none">→ Course Modules Page</a>
+      <a href="https://girotastic.gumroad.com" target="_blank" style="color:var(--yellow);font-family:'DM Mono',monospace;font-size:.8rem;text-decoration:none">→ Gumroad Dashboard</a>
+      <a href="https://dashboard.stripe.com" target="_blank" style="color:var(--yellow);font-family:'DM Mono',monospace;font-size:.8rem;text-decoration:none">→ Stripe Dashboard</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ADMIN_PASS = 'Admin82';
+let selectedType = 'full';
+let generatedCodes = JSON.parse(localStorage.getItem('tlg_codes') || '[]');
+let currentCode = '';
+
+function adminLogin() {
+  const pass = document.getElementById('adminPass').value;
+  if (pass === ADMIN_PASS) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    updateStats();
+    renderCodes();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function adminLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('adminPass').value = '';
+}
+
+function selectType(type) {
+  selectedType = type;
+  document.getElementById('btn-full').classList.toggle('active', type === 'full');
+  document.getElementById('btn-gold').classList.toggle('active', type === 'gold');
+}
+
+function generateCode() {
+  const prefix = selectedType === 'gold' ? 'GOLD' : 'TLG';
+  const random = Math.random().toString(36).substring(2,7).toUpperCase();
+  currentCode = prefix + '-' + random;
+  
+  const codeObj = {
+    code: currentCode,
+    type: selectedType,
+    date: new Date().toLocaleDateString('en-GB')
+  };
+  
+  generatedCodes.push(codeObj);
+  localStorage.setItem('tlg_codes', JSON.stringify(generatedCodes));
+  
+  document.getElementById('generatedCode').textContent = currentCode;
+  document.getElementById('generatedType').textContent = selectedType === 'gold' ? '⭐ Gold Community Access' : '📚 Full Course Access';
+  document.getElementById('resultBox').style.display = 'block';
+  
+  // Show email template
+  const accessUrl = selectedType === 'gold' ? 'thelastgiro.com/gold.html' : 'thelastgiro.com/modules.html';
+  const emailText = selectedType === 'gold' 
+    ? `Subject: Your Last Giro Gold Access Code
+
+Hi [Student Name],
+
+Welcome to The Last Giro Gold Community! 
+
+Your access code: ${currentCode}
+
+To access your Gold Members Area:
+1. Go to: thelastgiro.com/gold.html
+2. Enter your code: ${currentCode}
+3. Join the WhatsApp group straight away
+
+Your code works every time you visit — no need to write it down anywhere except somewhere safe.
+
+See you in the WhatsApp group!
+
+Christopher
+The Last Giro
+hello@thelastgiro.com`
+    : `Subject: Your Last Giro Course Access
+
+Hi [Student Name],
+
+Thank you for purchasing The Last Giro Full Course!
+
+Your access code: ${currentCode}
+
+To access all 11 modules:
+1. Go to: thelastgiro.com/modules.html
+2. Enter your code: ${currentCode}
+3. Start with Module 1 and work through in order
+
+Your code works every time you visit. Keep this email safe.
+
+Any questions — email hello@thelastgiro.com
+
+Good luck — this is just the beginning.
+
+Christopher
+The Last Giro`;
+
+  document.getElementById('emailBody').textContent = emailText;
+  document.getElementById('emailTemplate').style.display = 'block';
+  
+  updateStats();
+  renderCodes();
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(currentCode).then(()=>{
+    document.querySelector('.copy-btn').textContent = 'Copied ✓';
+    setTimeout(()=>{ document.querySelector('.copy-btn').textContent = 'Copy Code'; }, 2000);
+  });
+}
+
+function updateStats() {
+  const total = generatedCodes.length;
+  const full = generatedCodes.filter(c => c.type === 'full').length;
+  const gold = generatedCodes.filter(c => c.type === 'gold').length;
+  document.getElementById('totalCodes').textContent = total;
+  document.getElementById('fullCodes').textContent = full;
+  document.getElementById('goldCodes').textContent = gold;
+}
+
+function renderCodes() {
+  const list = document.getElementById('codesList');
+  if (generatedCodes.length === 0) {
+    list.innerHTML = '<p style="font-size:.82rem;color:var(--muted);font-style:italic">No codes generated yet.</p>';
+    return;
+  }
+  list.innerHTML = [...generatedCodes].reverse().map(c => 
+    `<div class="code-item">
+      <span class="code">${c.code}</span>
+      <span class="type">${c.type === 'gold' ? '⭐ Gold' : '📚 Full'}</span>
+      <span class="date">${c.date}</span>
+    </div>`
+  ).join('');
+}
+
+document.getElementById('adminPass').addEventListener('keypress', e => {
+  if (e.key === 'Enter') adminLogin();
+});
+
+// Keep session alive
+if (sessionStorage.getItem('tlg_admin')) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  updateStats();
+  renderCodes();
+}
+</script>
+</body>
+</html>

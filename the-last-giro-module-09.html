@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 09: CRM & Tech Setup</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="paid-badge">Module 09 — Full Course</div>
+  <div class="mod-tag">The Last Giro — Module 09 of 11</div>
+  <div class="mod-num">09</div>
+  <h1>CRM & Tech Setup</h1>
+  <p class="mod-intro">The complete account setup guide in the correct order — with warnings about every trap that wastes time and money. Do this once, do it right.</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Set Up in This Order — Do Not Skip Steps</div>
+<p>Setting these up in the wrong order causes problems. Do them exactly in the sequence below. Some need a laptop — marked clearly.</p>
+</div>
+
+<h2>Step 1 — <span>Email</span> (Phone or Laptop)</h2>
+<p><strong>Use Zoho Mail free plan</strong> — gives you a professional email like hello@yourbusiness.com completely free.</p>
+<ul class="points">
+<li>Go to zoho.com/mail and sign up for the FREE plan</li>
+<li><strong>Critical rule: set up a SEPARATE free Zoho account for each business.</strong> Never try to add a second business domain to an existing Zoho paid account — you will hit walls and potentially pay for upgrades you don't need.</li>
+<li>Add your domain, verify it, create your email address</li>
+<li>The free plan allows 1 user and 1 domain — that's all you need to start</li>
+</ul>
+
+<div class="fix-box">
+<div class="fix-title">Zoho free plan limit — what to expect</div>
+<p>The free plan only allows 1 mailbox. If you see a message about needing a licence when adding users — you've hit this limit. Solution: you only need 1 mailbox. Don't upgrade.</p>
+<p>If Zoho asks for an organisation name — just put your business name. It's a label only, doesn't create a legal entity.</p>
+</div>
+
+<h2>Step 2 — <span>Payments</span> (Phone or Laptop)</h2>
+<ul class="points">
+<li><strong>PayPal Business</strong> — free to set up, small % per transaction, send invoices directly. paypal.com/business</li>
+<li><strong>Stripe</strong> — professional card payments, create payment links without coding. stripe.com — when asked for statement descriptor, use your business name in capitals e.g. THELASTGIRO</li>
+<li><strong>Gumroad</strong> — for selling digital products (courses, PDFs, guides). gumroad.com — free to set up, takes ~10% per sale (this is a deductible expense)</li>
+</ul>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Gumroad setup order — critical</div>
+<p>Set up Gumroad and create your products <strong>before</strong> you build your website. You need the Gumroad product links to put on your buy buttons. Building the site first means doing the work twice.</p>
+<p>Also: add your earnings disclaimer and T&Cs to every Gumroad product description before publishing. Not after.</p>
+</div>
+
+<h2>Step 3 — <span>Client Tracking</span> (Phone or Laptop)</h2>
+<ul class="points">
+<li><strong>Google Sheets (free)</strong> — Name, contact, what they need, last contact date, status, monthly value. That's your CRM.</li>
+<li>Review it every Monday. If you haven't contacted a lead in 2 weeks — do it today.</li>
+</ul>
+
+<h2>Step 4 — <span>Communication</span> (Phone)</h2>
+<ul class="points">
+<li><strong>WhatsApp Business (free)</strong> — separate from personal, business profile, services catalogue, auto-reply</li>
+<li>Set up a quick reply: "Thanks for getting in touch — I'll respond within a few hours."</li>
+<li>Add your services to the Catalogue section — clients can see what you offer before they message</li>
+</ul>
+
+<h2>Step 5 — <span>File Storage</span> (Phone or Laptop)</h2>
+<ul class="points">
+<li><strong>Google Drive (15GB free)</strong> — one folder per client, share files directly rather than emailing attachments</li>
+<li>Create a folder: "Business Expenses [Year]" — sub-folders per month — screenshot every receipt immediately</li>
+</ul>
+
+<h2>Step 6 — <span>Scheduling</span> (Phone or Laptop)</h2>
+<ul class="points">
+<li><strong>Calendly free tier</strong> — let clients book calls automatically, connects to Google Calendar</li>
+<li>Saves hours of back-and-forth every week</li>
+</ul>
+
+<h2>Step 7 — <span>Email Marketing</span> (Laptop recommended)</h2>
+<ul class="points">
+<li><strong>Mailchimp free tier</strong> — up to 500 subscribers free</li>
+<li>Signup form is under <strong>Forms in the left menu</strong> — NOT Audience settings</li>
+<li>Use the form URL directly in your website — not the embed code</li>
+</ul>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Your Setup Checklist</div>
+<p>"I'm setting up a <span class="fill">[business type]</span> as a sole trader on a tight budget. Give me step-by-step setup instructions for: (1) Zoho free email with my domain, (2) PayPal Business account, (3) WhatsApp Business profile with a service catalogue, (4) a simple monthly income and expenses tracker in Google Sheets. Free tools only. Mobile-first instructions."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have a professional email address set up — hello@mybusiness.com or similar</strong></li><li><strong>I have PayPal Business set up and can take payments today</strong></li><li><strong>I have WhatsApp Business set up with my services in the catalogue</strong></li><li><strong>I have a Google Sheet tracking my income and expenses</strong></li><li><strong>I have set up Gumroad (if selling digital products) BEFORE building my website</strong></li></ul></div>
+
+<div class="nav-footer"><a href="the-last-giro-module-08.html" class="nav-btn">← Module 08</a><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 09 of 11</span><a href="the-last-giro-module-10.html" class="nav-btn">Module 10 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

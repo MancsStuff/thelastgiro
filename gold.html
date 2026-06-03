@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Members — The Last Giro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--gold:#c49a1a;--grey:#141414;--border:#2a2a2a;--muted:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7}
+.topbar{background:var(--black);border-bottom:2px solid var(--yellow);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--yellow);text-decoration:none}
+.gold-badge{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--yellow);color:#000;padding:0.3rem 0.75rem;font-weight:700}
+
+/* GATE */
+.gate{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.gate-star{font-size:3rem;margin-bottom:1rem}
+.gate h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);color:var(--yellow);line-height:0.9;margin-bottom:1rem}
+.gate p{color:var(--muted);font-size:0.95rem;max-width:440px;margin-bottom:2rem;line-height:1.7}
+.gate p strong{color:var(--white)}
+.gate-box{background:var(--grey);border:2px solid var(--yellow);padding:2rem;max-width:400px;width:100%}
+.gate-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:1rem;display:block}
+.gate-input{width:100%;background:#080808;border:1px solid var(--border);color:var(--white);font-family:'DM Mono',monospace;font-size:1rem;padding:0.85rem 1rem;outline:none;margin-bottom:0.75rem;letter-spacing:0.2em;text-align:center}
+.gate-input:focus{border-color:var(--yellow)}
+.gate-btn{width:100%;background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem;border:none;cursor:pointer}
+.gate-err{color:var(--red);font-family:'DM Mono',monospace;font-size:0.72rem;margin-top:0.75rem;display:none}
+.gate-note{font-size:0.78rem;color:var(--muted);margin-top:1rem}
+.gate-note a{color:var(--yellow);text-decoration:none}
+
+/* GOLD CONTENT */
+.gold-content{display:none;max-width:900px;margin:0 auto;padding:3rem 1.5rem}
+.welcome-hero{background:var(--yellow);padding:2.5rem;margin-bottom:2.5rem;text-align:center}
+.welcome-hero h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.5rem);color:#000;line-height:0.95;margin-bottom:0.5rem}
+.welcome-hero p{color:#5a5000;font-size:0.95rem}
+
+.gold-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-bottom:2.5rem}
+.gold-card{background:var(--grey);padding:1.75rem;border-top:3px solid var(--yellow)}
+.gold-card-icon{font-size:2rem;margin-bottom:0.75rem}
+.gold-card-title{font-weight:700;font-size:1rem;color:var(--white);margin-bottom:0.5rem}
+.gold-card-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.gold-card-btn{display:inline-block;background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.7rem 1.25rem;text-decoration:none;transition:opacity 0.2s}
+.gold-card-btn:hover{opacity:0.85}
+.gold-card-btn.outline{background:transparent;color:var(--yellow);border:1px solid var(--yellow)}
+
+.sec-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:1rem}
+.sec-heading{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--white);margin-bottom:0.5rem;line-height:1}
+.sec-heading span{color:var(--yellow)}
+
+.modules-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-bottom:2.5rem}
+.module-row{background:var(--grey);display:grid;grid-template-columns:3rem 1fr auto;gap:1.25rem;align-items:center;padding:1.1rem 1.5rem;text-decoration:none;transition:background 0.2s;border-left:3px solid transparent}
+.module-row:hover{background:#1e1e1e;border-left-color:var(--yellow)}
+.mod-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--border);line-height:1}
+.mod-title{font-weight:700;font-size:0.92rem;color:var(--white);margin-bottom:0.15rem}
+.mod-desc{font-size:0.78rem;color:var(--muted)}
+.mod-badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.5rem;white-space:nowrap}
+.mod-badge.free{background:#0a2a0a;color:var(--green);border:1px solid #1a4a1a}
+.mod-badge.core{background:#2a2000;color:var(--yellow);border:1px solid #4a3a00}
+.mod-badge.bonus{background:#2a0a0a;color:var(--red);border:1px solid #4a1a1a}
+
+.qa-box{background:#0f0f00;border:2px solid var(--yellow);padding:2rem;margin-bottom:2.5rem}
+.qa-title{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:1rem}
+.qa-box p{font-size:0.9rem;color:#bbb;line-height:1.7;margin-bottom:0.5rem}
+.qa-box p:last-child{margin:0}
+.qa-box strong{color:var(--white)}
+
+.cancel-box{background:var(--grey);border:1px solid var(--border);padding:1.5rem;margin-bottom:2.5rem}
+.cancel-box p{font-size:0.85rem;color:var(--muted);line-height:1.7}
+.cancel-box strong{color:var(--white)}
+.cancel-box a{color:var(--yellow)}
+
+footer{padding-top:2rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:0.6rem;color:#333;text-align:center;line-height:1.8;margin-bottom:1rem}
+
+@media(max-width:600px){.module-row{grid-template-columns:2.5rem 1fr}.mod-badge{display:none}.topbar{padding:1rem 1.25rem}.gold-content{padding:2rem 1.25rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="logo">The Last Giro</a>
+  <span class="gold-badge">★ Gold Members</span>
+</div>
+
+<!-- GATE -->
+<div class="gate" id="gate">
+  <div class="gate-star">⭐</div>
+  <h1>Gold<br>Members Area</h1>
+  <p>Enter your Gold access code from your welcome email. <strong>Not a Gold member yet?</strong> Join below.</p>
+  <div class="gate-box">
+    <span class="gate-label">Gold Access Code</span>
+    <input type="text" class="gate-input" id="goldCodeInput" placeholder="GOLD-XXXX" maxlength="12" autocomplete="off">
+    <button class="gate-btn" onclick="checkGoldCode()">Enter Members Area →</button>
+    <div class="gate-err" id="goldErr">Invalid code. Check your welcome email or contact hello@thelastgiro.com</div>
+    <p class="gate-note">Not a member? <a href="https://girotastic.gumroad.com/l/thelastgiro-gold" target="_blank">Join Gold — £29.99/month →</a></p>
+  </div>
+</div>
+
+<!-- GOLD CONTENT -->
+<div class="gold-content" id="goldContent">
+
+  <div class="welcome-hero">
+    <h2>Welcome to Gold ⭐</h2>
+    <p>You're in. Everything you need is right here. Start with the WhatsApp group.</p>
+  </div>
+
+  <!-- KEY ACTIONS -->
+  <div class="gold-grid">
+    <div class="gold-card">
+      <div class="gold-card-icon">💬</div>
+      <div class="gold-card-title">WhatsApp Community</div>
+      <div class="gold-card-desc">Join the private Gold community group. Ask questions, share wins, get support from Christopher and other members.</div>
+      <a href="https://chat.whatsapp.com/CHkEFcEvleb1QYZQusnse5" class="gold-card-btn" target="_blank">Join WhatsApp Group →</a>
+    </div>
+    <div class="gold-card">
+      <div class="gold-card-icon">🎙️</div>
+      <div class="gold-card-title">Monthly Live Q&A</div>
+      <div class="gold-card-desc">Live session with Christopher every month. Details posted in the WhatsApp group. Bring your questions — nothing is off limits.</div>
+      <a href="https://chat.whatsapp.com/CHkEFcEvleb1QYZQusnse5" class="gold-card-btn outline" target="_blank">Check WhatsApp for Next Date</a>
+    </div>
+    <div class="gold-card">
+      <div class="gold-card-icon">📧</div>
+      <div class="gold-card-title">Direct Support</div>
+      <div class="gold-card-desc">Email Christopher directly with questions about your specific business. Gold members get priority responses within 24 hours.</div>
+      <a href="mailto:hello@thelastgiro.com?subject=Gold%20Member%20Support" class="gold-card-btn outline">Email Christopher →</a>
+    </div>
+  </div>
+
+  <!-- ALL MODULES -->
+  <div class="sec-label">Your Course</div>
+  <h2 class="sec-heading">All <span>11 Modules</span></h2>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem">Work through them in order. Tick the checklist at the end of each module before moving on.</p>
+
+  <div class="modules-grid">
+    <a href="the-last-giro-module-01.html" class="module-row" style="border-left-color:var(--green)">
+      <div class="mod-num">01</div>
+      <div class="mod-info"><div class="mod-title">The Opportunity & The Numbers</div><div class="mod-desc">UC taper rate, expenses trick, what to do before your first sale</div></div>
+      <span class="mod-badge free">Free</span>
+    </a>
+    <a href="the-last-giro-module-02.html" class="module-row"><div class="mod-num">02</div><div class="mod-info"><div class="mod-title">Your Ideal Client Profile</div><div class="mod-desc">Find the exact person who needs you</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-03.html" class="module-row"><div class="mod-num">03</div><div class="mod-info"><div class="mod-title">Products to Create & Launch</div><div class="mod-desc">Free, paid, and recurring offers</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-04.html" class="module-row"><div class="mod-num">04</div><div class="mod-info"><div class="mod-title">Benefits, Results & Transformations</div><div class="mod-desc">The language that sells</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-05.html" class="module-row"><div class="mod-num">05</div><div class="mod-info"><div class="mod-title">The Funnel & Client Journey</div><div class="mod-desc">4-step system — stranger to client</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-06.html" class="module-row"><div class="mod-num">06</div><div class="mod-info"><div class="mod-title">The 90-Day Marketing Plan</div><div class="mod-desc">Month by month, AI-assisted content plan</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-07.html" class="module-row"><div class="mod-num">07</div><div class="mod-info"><div class="mod-title">The AI Tool Stack</div><div class="mod-desc">17 free tools, daily workflow</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-08.html" class="module-row"><div class="mod-num">08</div><div class="mod-info"><div class="mod-title">Your Landing Page</div><div class="mod-desc">Built with free tools, live today</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-09.html" class="module-row"><div class="mod-num">09</div><div class="mod-info"><div class="mod-title">CRM & Tech Setup</div><div class="mod-desc">Exact order, every trap flagged</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-10.html" class="module-row"><div class="mod-num">10</div><div class="mod-info"><div class="mod-title">Your One-Page Pitch</div><div class="mod-desc">AI-generated in 5 minutes</div></div><span class="mod-badge core">Core</span></a>
+    <a href="the-last-giro-module-11.html" class="module-row"><div class="mod-num">11</div><div class="mod-info"><div class="mod-title">Tax, DWP & Keeping More Money</div><div class="mod-desc">Every allowable expense, UC reporting</div></div><span class="mod-badge bonus">Bonus</span></a>
+  </div>
+
+  <!-- Q&A INFO -->
+  <div class="qa-box">
+    <div class="qa-title">Monthly Live Q&A — How It Works</div>
+    <p>Every month Christopher hosts a live Q&A session for Gold members. <strong>Date and time is posted in the WhatsApp group</strong> at the start of each month.</p>
+    <p>Bring your specific business questions. No topic is off limits — marketing, tech setup, DWP reporting, pricing, clients, anything.</p>
+    <p>Can't make the live session? Post your question in WhatsApp beforehand and Christopher will answer it during the session.</p>
+  </div>
+
+  <!-- CANCEL INFO -->
+  <div class="cancel-box">
+    <p><strong>To cancel your Gold membership:</strong> Log into your Gumroad account at <a href="https://girotastic.gumroad.com" target="_blank">girotastic.gumroad.com</a> → Purchases → The Last Giro Gold → Cancel subscription. You retain access until the end of your current billing period. No questions asked.</p>
+    <p style="margin-top:.5rem">Questions? Email <a href="mailto:hello@thelastgiro.com">hello@thelastgiro.com</a></p>
+  </div>
+
+  <footer>
+    The Last Giro Gold Members Area — A Mancsstuff Course by Christopher Ryan Leece<br>
+    hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; ICO: 00013889232<br>
+    © 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+// Gold member codes - add new ones when members subscribe
+const goldCodes = {
+  'GOLD-TEST': true,
+};
+
+function checkGoldCode() {
+  const code = document.getElementById('goldCodeInput').value.trim().toUpperCase();
+  const err = document.getElementById('goldErr');
+  
+  if (goldCodes[code]) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('goldContent').style.display = 'block';
+    sessionStorage.setItem('tlg_gold', '1');
+    window.scrollTo(0,0);
+  } else {
+    err.style.display = 'block';
+    document.getElementById('goldCodeInput').style.borderColor = '#e02020';
+  }
+}
+
+document.getElementById('goldCodeInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkGoldCode();
+});
+
+if (sessionStorage.getItem('tlg_gold')) {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('goldContent').style.display = 'block';
+}
+</script>
+</body>
+</html>

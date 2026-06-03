@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Module 01: The Opportunity & The Numbers</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+h1 span{color:var(--yellow)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--yellow)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--yellow);font-style:normal;font-weight:600}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.fix-box p{margin:0;color:#ccc;font-size:.9rem}
+.fix-box p+p{margin-top:.5rem}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
+table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
+table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
+table.data tr:hover td{background:#1a1a1a}
+table.data td strong{color:var(--white)}
+table.data .yes{color:var(--green);font-weight:700}
+table.data .no{color:var(--red);font-weight:700}
+</style>
+</head>
+<body>
+<div class="mod-header">
+  <div class="free-badge">★ FREE MODULE — No Email Required</div>
+  <div class="mod-tag">The Last Giro — Module 01 of 11</div>
+  <div class="mod-num">01</div>
+  <h1>The Opportunity & The Numbers</h1>
+  <p class="mod-intro">Why AI has changed everything for people starting from nothing. The honest maths of earning on benefits. And the one thing you need to do before your first sale.</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Read This Before You Start — Laptop vs Phone</div>
+<p><strong>Most of this course works on your phone.</strong> Writing, designing graphics, filming TikToks, messaging clients — all fine on mobile.</p>
+<p>But some tasks <strong>require a laptop or PC</strong>: setting up GitHub, managing DNS settings, Zoho Mail admin, and uploading files to your website. We will tell you clearly at the start of each section which device you need. Don't start a laptop task on your phone — you will hit walls and waste time.</p>
+<p>If you only have a phone right now — library computers are free. Most councils have them. You only need laptop access for a few specific tasks.</p>
+</div>
+
+<h2>Why <span>Now</span> Is Different</h2>
+<p>For most of history, starting a business meant money upfront. Premises, stock, staff, equipment. The barrier was capital. If you didn't have it, you didn't start.</p>
+<p>That changed. AI tools that used to cost hundreds a month are now free. Tools that replace graphic designers, copywriters, social media managers, video editors. All free. All on your phone.</p>
+<p>This isn't about becoming a tech person. It's about being <strong>slightly ahead of everyone else in your area</strong> — the first person in your town offering professional services using AI tools they've never heard of.</p>
+
+<div class="info-box yellow">
+<div class="info-label">The window is open right now</div>
+<p>Most people still don't know these tools exist. The advantage of being early shrinks every month. This is your moment.</p>
+</div>
+
+<h2>The Real <span>Problems</span> This Course Fixes</h2>
+<p>Before we get into what's possible — let's be honest about what's hard. Because if you've been on benefits, you've probably hit most of these:</p>
+<ul class="points">
+<li><strong>Fear of losing benefits</strong> — You want to earn but you're terrified of what happens to your UC. We deal with this properly in Module 11. It's not as scary as the system makes it feel.</li>
+<li><strong>No startup money</strong> — Every tool in this course is free or under £10/month. Your phone is enough to start.</li>
+<li><strong>No confidence</strong> — The system grinds that down. This course is built around what you already know and already are.</li>
+<li><strong>No idea what business to start</strong> — Module 2 fixes this. You already have skills people will pay for.</li>
+<li><strong>No time or energy</strong> — Built for people with caring responsibilities, health conditions, limited hours. 30 minutes a day is enough.</li>
+<li><strong>Tried things that didn't work</strong> — Surveys, MLM, dropshipping. This is none of those. This is a real service business built on real skills.</li>
+<li><strong>Don't trust courses</strong> — Fair. This module is completely free. Judge it before you spend a penny.</li>
+</ul>
+
+<h2>The <span>Simple Maths</span></h2>
+<p>Let's talk numbers honestly. Not fantasy numbers. Real numbers for real people starting from nothing.</p>
+
+<table class="data">
+<thead><tr><th>What you offer</th><th>Who pays</th><th>Price</th><th>Time using AI</th></tr></thead>
+<tbody>
+<tr><td>10 social media posts/month</td><td>Local café, shop, tradesman</td><td><strong>£50–£100/mo</strong></td><td>2–3 hours</td></tr>
+<tr><td>A flyer or graphic</td><td>Any small business</td><td><strong>£20–£40</strong></td><td>30 minutes</td></tr>
+<tr><td>Rewriting a bio or website copy</td><td>Sole trader, freelancer</td><td><strong>£30–£75</strong></td><td>1 hour</td></tr>
+<tr><td>Setting up a Google Business listing</td><td>Any local business</td><td><strong>£25–£50</strong></td><td>45 minutes</td></tr>
+<tr><td>5 product descriptions</td><td>Etsy seller, online shop</td><td><strong>£30–£60</strong></td><td>1 hour</td></tr>
+</tbody>
+</table>
+
+<p><strong>Month 1 target: one client, one job, £50–£100.</strong> Once you've done it once, you know it works.</p>
+
+<h2>UC, Benefits <span>& Earning</span></h2>
+<h3>The Taper Rate — Plain English</h3>
+<p>The UC taper rate is <strong>55%</strong>. For every £1 of profit you earn over your work allowance, DWP reduces your UC by 55p. You keep 45p.</p>
+
+<table class="data">
+<thead><tr><th>Monthly profit</th><th>UC reduction</th><th>Real gain</th></tr></thead>
+<tbody>
+<tr><td>£100</td><td>-£55</td><td class="yes">+£45 better off</td></tr>
+<tr><td>£200</td><td>-£110</td><td class="yes">+£90 better off</td></tr>
+<tr><td>£500</td><td>-£275</td><td class="yes">+£225 better off</td></tr>
+<tr><td>£1,000</td><td>-£550</td><td class="yes">+£450 better off</td></tr>
+</tbody>
+</table>
+
+<p><strong>You are always better off earning than not earning.</strong> Every single time.</p>
+
+<h3>The Expenses Trick</h3>
+<p>You report <strong>profit — not income — to DWP.</strong> Profit = income minus allowable expenses. Every expense you claim reduces the number DWP uses. Module 11 covers every expense you can legally claim.</p>
+
+<div class="warning-box">
+<div class="warning-title">⚠ Do This Before Your First Sale</div>
+<p>Log into your UC journal online and add a note: <em>"I am starting a self-employed business. I will report all earnings in my monthly assessment period."</em> Screenshot it. That protects you if DWP ever questions when you started.</p>
+</div>
+
+<div class="info-box yellow">
+<div class="info-label">The Minimum Income Floor — Know This</div>
+<p>After 12 months of self-employment, DWP may apply the Minimum Income Floor — an assumed earnings level. It does NOT apply in your first 12 months. If you have a health condition limiting your capacity for work, it may not apply at all. Ask your work coach before month 12.</p>
+</div>
+
+<div class="prompt-box">
+<div class="prompt-label">AI Prompt — Use DeepSeek or Claude (both free)</div>
+<p>"I want to build a small business to earn extra money alongside my benefits. I'm good at <span class="fill">[list 3 things]</span>. I have about <span class="fill">[X hours]</span> per week. My biggest concern is <span class="fill">[benefits / confidence / time]</span>. Give me a realistic income target for month 1, 3, and 6. Suggest 3 business ideas that match my skills."</p>
+</div>
+
+<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have read and understood the UC taper rate maths</strong></li><li><strong>I have noted in my UC journal that I am starting a business</strong></li><li><strong>I have run the AI prompt above and written down my top business idea</strong></li><li><strong>I know which tasks need a laptop (I have access to one or know where to get one)</strong></li></ul></div>
+
+<div class="nav-footer"><span></span><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 01 of 11</span><a href="https://buy.stripe.com/aFaeV6fDE0JD2Ec0T753O00" class="nav-btn primary">Get Full Course £9.99 →</a></div>
+<div class="mod-footer">
+The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

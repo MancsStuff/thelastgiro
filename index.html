@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#080808;
+  color:#f5f0e8;
+  font-family:'Barlow',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1.5rem;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.bg-text{
+  position:fixed;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(8rem,40vw,22rem);
+  color:#111;
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+  z-index:0;
+}
+.content{position:relative;z-index:1;max-width:560px;width:100%}
+.badge{
+  display:inline-block;
+  background:#f5d800;
+  color:#080808;
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:0.4rem 1rem;
+  margin-bottom:1.5rem;
+}
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,16vw,8rem);
+  line-height:0.88;
+  color:#f5f0e8;
+  margin-bottom:0.5rem;
+}
+h1 span{color:#f5d800}
+.tagline{
+  font-size:clamp(1rem,3vw,1.2rem);
+  color:#888;
+  line-height:1.7;
+  margin-bottom:2.5rem;
+  max-width:440px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.tagline strong{color:#f5f0e8}
+.form-wrap{
+  background:#141414;
+  border:1px solid #2a2a2a;
+  border-top:3px solid #f5d800;
+  padding:2rem 1.5rem;
+  margin-bottom:2rem;
+}
+.form-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:1rem;
+  display:block;
+}
+.form-row{
+  display:flex;
+  gap:0;
+  flex-direction:column;
+  gap:0.75rem;
+}
+@media(min-width:480px){
+  .form-row{flex-direction:row;gap:0}
+}
+input[type="email"]{
+  flex:1;
+  background:#080808;
+  border:1px solid #2a2a2a;
+  border-right:none;
+  color:#f5f0e8;
+  font-family:'Barlow',sans-serif;
+  font-size:0.95rem;
+  padding:0.85rem 1rem;
+  outline:none;
+  width:100%;
+  border-right:1px solid #2a2a2a;
+}
+@media(min-width:480px){
+  input[type="email"]{border-right:none}
+}
+input[type="email"]::placeholder{color:#444}
+input[type="email"]:focus{border-color:#f5d800}
+.btn-submit{
+  background:#f5d800;
+  color:#080808;
+  font-family:'DM Mono',monospace;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.85rem 1.5rem;
+  border:none;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background 0.2s;
+  width:100%;
+}
+@media(min-width:480px){.btn-submit{width:auto}}
+.btn-submit:hover{background:#e5c800}
+.promise{
+  font-size:0.78rem;
+  color:#444;
+  margin-top:0.75rem;
+  font-family:'DM Mono',monospace;
+}
+.what-is{
+  margin-bottom:2.5rem;
+}
+.what-is p{
+  font-size:0.95rem;
+  color:#888;
+  line-height:1.75;
+  margin-bottom:0.75rem;
+}
+.what-is p strong{color:#f5f0e8}
+.bullets{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  margin:1.5rem 0;
+  text-align:left;
+}
+.bullet{
+  display:flex;
+  gap:0.75rem;
+  align-items:flex-start;
+  font-size:0.9rem;
+  color:#bbb;
+  padding:0.6rem 0.9rem;
+  background:#141414;
+  border-left:2px solid #f5d800;
+}
+.bullet::before{content:'→';color:#f5d800;font-family:'DM Mono',monospace;flex-shrink:0}
+.bullet strong{color:#f5f0e8}
+.social{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-top:1.5rem;
+}
+.social a{
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#666;
+  text-decoration:none;
+  border:1px solid #2a2a2a;
+  padding:0.4rem 0.9rem;
+  transition:all 0.2s;
+}
+.social a:hover{color:#f5d800;border-color:#f5d800}
+footer{
+  position:relative;
+  z-index:1;
+  margin-top:2rem;
+  font-family:'DM Mono',monospace;
+  font-size:0.58rem;
+  color:#333;
+  letter-spacing:0.05em;
+  text-align:center;
+  line-height:1.8;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-text">TLG</div>
+
+<div class="content">
+
+  <div class="badge">🔥 Something big is coming</div>
+
+  <h1>THE LAST<br><span>GIRO</span></h1>
+
+  <p class="tagline">
+    Build any business from nowt using <strong>free AI tools</strong>.<br>
+    From your phone. On benefits. Starting today.
+  </p>
+
+  <div class="what-is">
+    <div class="bullets">
+      <div class="bullet"><strong>Free AI tools</strong> that replace a full team — designer, writer, video editor, social media manager</div>
+      <div class="bullet"><strong>The DWP guide</strong> nobody gives you — keep more of what you earn, legally</div>
+      <div class="bullet"><strong>Any business</strong> — any idea, any background, any starting point</div>
+      <div class="bullet"><strong>Module 1 completely free</strong> — no email, no catch, no nonsense</div>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <span class="form-label">Be first to know when we launch</span>
+    <div class="form-row">
+      <input type="email" placeholder="your@email.com" id="emailInput">
+      <button class="btn-submit" onclick="submitEmail()">Notify Me →</button>
+    </div>
+    <p class="promise">No spam. No selling your data. Just the launch date.</p>
+  </div>
+
+  <div class="social">
+    <a href="https://tiktok.com/@TheLastGiro" target="_blank">TikTok</a>
+    <a href="https://facebook.com/TheLastGiro" target="_blank">Facebook</a>
+    <a href="https://instagram.com/TheLastGiro" target="_blank">Instagram</a>
+    <a href="https://threads.net/@TheLastGiro" target="_blank">Threads</a>
+  </div>
+
+</div>
+
+<footer>
+  The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+  hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; ICO: 00013889232<br>
+  © 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</footer>
+
+<script>
+function submitEmail() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // Redirect to Mailchimp signup form with email pre-filled
+  window.location.href = 'http://eepurl.com/dvC1Ow6A58';
+}
+
+// Allow enter key
+document.getElementById('emailInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') submitEmail();
+});
+</script>
+
+</body>
+</html>

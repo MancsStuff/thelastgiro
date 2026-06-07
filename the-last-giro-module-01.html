@@ -3,96 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Last Giro — Module 01: The Opportunity & The Numbers</title>
+<title>The Last Giro — Module 1: Free</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--black);color:var(--white);font-family:Barlow,sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
 .mod-header{border-bottom:3px solid var(--yellow);padding-bottom:1.5rem;margin-bottom:2.5rem}
-.mod-tag{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
-.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
-.paid-badge{display:inline-block;background:var(--grey);border:1px solid var(--yellow);color:var(--yellow);font-family:"DM Mono",monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
-.mod-num{font-family:"Bebas Neue",sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
-h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
+.mod-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.free-badge{display:inline-block;background:var(--yellow);color:#080808;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-num{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;margin-bottom:-1rem}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,7vw,4rem);color:var(--white);line-height:.95;margin-bottom:.75rem}
 h1 span{color:var(--yellow)}
 .mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
-h2{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
 h2 span{color:var(--yellow)}
 h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
 p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
 p strong{color:var(--white)}
 .prompt-box{background:#1a1a00;border-left:4px solid var(--yellow);padding:1rem 1.25rem;margin:1.5rem 0}
-.prompt-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
+.prompt-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.5rem}
 .prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
 .fill{color:var(--yellow);font-style:normal;font-weight:600}
 .info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
 .info-box.green{border-left:4px solid var(--green)}
 .info-box.red{border-left:4px solid var(--red)}
 .info-box.yellow{border-left:4px solid var(--yellow)}
-.info-box.orange{border-left:4px solid var(--orange)}
-.info-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
 .info-box.green .info-label{color:var(--green)}
 .info-box.red .info-label{color:var(--red)}
 .info-box.yellow .info-label{color:var(--yellow)}
-.info-box.orange .info-label{color:var(--orange)}
 .info-box p{margin:0;color:#ccc;font-size:.9rem}
 .info-box p+p{margin-top:.5rem}
 ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
 ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
-ul.points li::before{content:"→";color:var(--yellow);font-family:"DM Mono",monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li::before{content:"→";color:var(--yellow);font-family:'DM Mono',monospace;flex-shrink:0;margin-top:.1rem}
 ul.points li strong{color:var(--white)}
 .warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
-.warning-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
 .warning-box p{margin:0;color:#ccc;font-size:.9rem}
 .warning-box p+p{margin-top:.5rem}
-.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
-.success-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
-.success-box p{margin:0;color:#ccc;font-size:.9rem}
-.fix-box{background:#1a0a00;border:2px solid var(--orange);padding:1.25rem 1.5rem;margin:1.5rem 0}
-.fix-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
-.fix-box p{margin:0;color:#ccc;font-size:.9rem}
-.fix-box p+p{margin-top:.5rem}
+.win-box{background:#001a00;border:2px solid var(--green);padding:1.5rem;margin:2rem 0}
+.win-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.win-box p{margin:0;color:#ccc;font-size:.9rem;line-height:1.7}
+.win-box p+p{margin-top:.5rem}
+
+/* CALCULATOR */
+.calc-section{background:var(--grey);border:2px solid var(--yellow);padding:1.75rem;margin:2rem 0}
+.calc-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);margin-bottom:.5rem;line-height:1}
+.calc-sub{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.calc-row{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.calc-label{font-size:.82rem;color:#bbb;font-weight:600}
+.calc-input{background:#080808;border:1px solid var(--border);color:var(--white);font-family:'DM Mono',monospace;font-size:1rem;padding:.75rem 1rem;outline:none;width:100%;max-width:300px}
+.calc-input:focus{border-color:var(--yellow)}
+.calc-btn{background:var(--yellow);color:#000;font-family:'DM Mono',monospace;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2rem;border:none;cursor:pointer;margin-top:1rem;width:100%;max-width:300px}
+.calc-results{display:none;margin-top:1.5rem;background:#080808;border:1px solid var(--border);padding:1.25rem}
+.calc-result-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:#bbb}
+.calc-result-row:last-child{border:none;font-weight:700;color:var(--white);font-size:1rem;padding-top:.75rem}
+.calc-result-row .label{color:#bbb}
+.calc-result-row .value{font-family:'DM Mono',monospace;color:var(--green)}
+.calc-result-row.saving .value{color:var(--green);font-size:1.1rem}
+.calc-note{font-size:.78rem;color:var(--muted);margin-top:.75rem;font-style:italic}
+
+/* PITCH BUILDER */
+.pitch-section{background:var(--grey);border:2px solid var(--orange);padding:1.75rem;margin:2rem 0}
+.pitch-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--orange);margin-bottom:.5rem;line-height:1}
+.pitch-sub{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.pitch-row{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.pitch-label{font-size:.82rem;color:#bbb;font-weight:600}
+.pitch-input{background:#080808;border:1px solid var(--border);color:var(--white);font-family:'Barlow',sans-serif;font-size:.95rem;padding:.75rem 1rem;outline:none;width:100%}
+.pitch-input:focus{border-color:var(--orange)}
+.pitch-btn{background:var(--orange);color:#000;font-family:'DM Mono',monospace;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2rem;border:none;cursor:pointer;margin-top:1rem;width:100%}
+.pitch-output{display:none;margin-top:1.5rem;background:#0a0800;border:2px solid var(--orange);padding:1.25rem}
+.pitch-output-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.pitch-text{font-size:.95rem;color:var(--white);line-height:1.75;white-space:pre-wrap}
+.copy-pitch-btn{background:transparent;border:1px solid var(--orange);color:var(--orange);font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;margin-top:.75rem}
+.copy-pitch-btn:hover{background:var(--orange);color:#000}
+.deepseek-box{background:#0a0a1a;border:1px solid var(--border);padding:1.25rem;margin-top:1rem}
+.deepseek-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.deepseek-prompt{font-size:.85rem;color:#ccc;line-height:1.65;white-space:pre-wrap;font-family:'DM Mono',monospace}
+.copy-prompt-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;cursor:pointer;margin-top:.6rem}
+.copy-prompt-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+
 .checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
 .checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
-.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:"DM Mono",monospace}
+.checklist li::before{content:"☐";color:var(--yellow);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:'DM Mono',monospace}
 .checklist li strong{color:var(--white)}
 .before-next{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:2.5rem 0}
-.before-title{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.before-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
 .nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.nav-btn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
 .nav-btn.primary{background:var(--yellow);color:#080808;border-color:var(--yellow)}
-.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:"DM Mono",monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
-table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem}
-table.data th{background:var(--yellow);color:#080808;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1rem;text-align:left}
-table.data td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:#bbb}
-table.data tr:hover td{background:#1a1a1a}
-table.data td strong{color:var(--white)}
-table.data .yes{color:var(--green);font-weight:700}
-table.data .no{color:var(--red);font-weight:700}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
 </style>
 </head>
 <body>
+
 <div class="mod-header">
   <div class="free-badge">★ FREE MODULE — No Email Required</div>
-  <div class="mod-tag">The Last Giro — Module 01 of 11</div>
+  <div class="mod-tag">The Last Giro — Module 1 of 11</div>
   <div class="mod-num">01</div>
-  <h1>The Opportunity & The Numbers</h1>
-  <p class="mod-intro">Why AI has changed everything for people starting from nothing. The honest maths of earning on benefits. And the one thing you need to do before your first sale.</p>
+  <h1>The Opportunity<br><span>& The Numbers</span></h1>
+  <p class="mod-intro">This module gives you two real things to take away today — not just information. By the end you will know exactly how much more money you can legally keep on UC, and you will have your first AI-generated business pitch ready to send.</p>
 </div>
 
-<div class="warning-box">
-<div class="warning-title">⚠ Read This Before You Start — Laptop vs Phone</div>
-<p><strong>Most of this course works on your phone.</strong> Writing, designing graphics, filming TikToks, messaging clients — all fine on mobile.</p>
-<p>But some tasks <strong>require a laptop or PC</strong>: setting up GitHub, managing DNS settings, Zoho Mail admin, and uploading files to your website. We will tell you clearly at the start of each section which device you need. Don't start a laptop task on your phone — you will hit walls and waste time.</p>
-<p>If you only have a phone right now — library computers are free. Most councils have them. You only need laptop access for a few specific tasks.</p>
-</div>
-
-<div class="warning-box">
-<div class="warning-title">⚠ Tech Setup Takes Longer Than You Think — Start It First</div>
-<p>Module 9 covers setting up all your business tech — email, payments, live chat, scheduling, email marketing, and automation. Some of these take time to activate. <strong>Zoho Campaigns (email marketing) requires up to 24 hours for account approval before your automation goes live.</strong></p>
-<p>Do not wait until you get to Module 9 to start this. Set up your Zoho Mail and Zoho Campaigns accounts today — even before you finish this module. Let them run in the background while you work through the course.</p>
-<p>Everything in Module 9 is free. It just needs time to process.</p>
+<div class="win-box">
+  <div class="win-title">🎯 What You Will Have By The End of This Module</div>
+  <p><strong>Win 1:</strong> Your personal UC expenses calculation — the exact amount DWP could be reducing your payments by, and how much you could legally keep back.</p>
+  <p><strong>Win 2:</strong> Your first AI-generated business pitch — ready to copy, save, and send to a potential client today.</p>
+  <p>Both tools are built into this page. No app to download. No account needed. Works on your phone right now.</p>
 </div>
 
 <h2>Why <span>Now</span> Is Different</h2>
@@ -100,81 +119,240 @@ table.data .no{color:var(--red);font-weight:700}
 <p>That changed. AI tools that used to cost hundreds a month are now free. Tools that replace graphic designers, copywriters, social media managers, video editors. All free. All on your phone.</p>
 <p>This isn't about becoming a tech person. It's about being <strong>slightly ahead of everyone else in your area</strong> — the first person in your town offering professional services using AI tools they've never heard of.</p>
 
-<div class="info-box yellow">
-<div class="info-label">The window is open right now</div>
-<p>Most people still don't know these tools exist. The advantage of being early shrinks every month. This is your moment.</p>
-</div>
-
-<h2>The Real <span>Problems</span> This Course Fixes</h2>
-<p>Before we get into what's possible — let's be honest about what's hard. Because if you've been on benefits, you've probably hit most of these:</p>
-<ul class="points">
-<li><strong>Fear of losing benefits</strong> — You want to earn but you're terrified of what happens to your UC. We deal with this properly in Module 11. It's not as scary as the system makes it feel.</li>
-<li><strong>No startup money</strong> — Every tool in this course is free or under £10/month. Your phone is enough to start.</li>
-<li><strong>No confidence</strong> — The system grinds that down. This course is built around what you already know and already are.</li>
-<li><strong>No idea what business to start</strong> — Module 2 fixes this. You already have skills people will pay for.</li>
-<li><strong>No time or energy</strong> — Built for people with caring responsibilities, health conditions, limited hours. 30 minutes a day is enough.</li>
-<li><strong>Tried things that didn't work</strong> — Surveys, MLM, dropshipping. This is none of those. This is a real service business built on real skills.</li>
-<li><strong>Don't trust courses</strong> — Fair. This module is completely free. Judge it before you spend a penny.</li>
-</ul>
-
-<h2>The <span>Simple Maths</span></h2>
-<p>Let's talk numbers honestly. Not fantasy numbers. Real numbers for real people starting from nothing.</p>
-
-<table class="data">
-<thead><tr><th>What you offer</th><th>Who pays</th><th>Price</th><th>Time using AI</th></tr></thead>
-<tbody>
-<tr><td>10 social media posts/month</td><td>Local café, shop, tradesman</td><td><strong>£50–£100/mo</strong></td><td>2–3 hours</td></tr>
-<tr><td>A flyer or graphic</td><td>Any small business</td><td><strong>£20–£40</strong></td><td>30 minutes</td></tr>
-<tr><td>Rewriting a bio or website copy</td><td>Sole trader, freelancer</td><td><strong>£30–£75</strong></td><td>1 hour</td></tr>
-<tr><td>Setting up a Google Business listing</td><td>Any local business</td><td><strong>£25–£50</strong></td><td>45 minutes</td></tr>
-<tr><td>5 product descriptions</td><td>Etsy seller, online shop</td><td><strong>£30–£60</strong></td><td>1 hour</td></tr>
-</tbody>
-</table>
-
-<p><strong>Month 1 target: one client, one job, £50–£100.</strong> Once you've done it once, you know it works.</p>
-
-<h2>UC, Benefits <span>& Earning</span></h2>
-<h3>The Taper Rate — Plain English</h3>
-<p>The UC taper rate is <strong>55%</strong>. For every £1 of profit you earn over your work allowance, DWP reduces your UC by 55p. You keep 45p.</p>
-
-<table class="data">
-<thead><tr><th>Monthly profit</th><th>UC reduction</th><th>Real gain</th></tr></thead>
-<tbody>
-<tr><td>£100</td><td>-£55</td><td class="yes">+£45 better off</td></tr>
-<tr><td>£200</td><td>-£110</td><td class="yes">+£90 better off</td></tr>
-<tr><td>£500</td><td>-£275</td><td class="yes">+£225 better off</td></tr>
-<tr><td>£1,000</td><td>-£550</td><td class="yes">+£450 better off</td></tr>
-</tbody>
-</table>
-
-<p><strong>You are always better off earning than not earning.</strong> Every single time.</p>
-
-<h3>The Expenses Trick</h3>
-<p>You report <strong>profit — not income — to DWP.</strong> Profit = income minus allowable expenses. Every expense you claim reduces the number DWP uses. Module 11 covers every expense you can legally claim.</p>
+<h2>The UC Taper Rate — <span>Plain English</span></h2>
+<p>If you're on Universal Credit, this is the thing that stops most people before they start. Let's deal with it now — with real numbers.</p>
+<p>The taper rate is <strong>55%</strong>. For every £1 of profit you earn over your work allowance, DWP reduces your UC by 55p. You keep 45p. <strong>It always pays more to earn than not to earn.</strong></p>
+<p>But here's what most people don't know: <strong>you report profit — not income — to DWP.</strong></p>
+<p>Profit = Income minus allowable business expenses. Every legitimate expense reduces what DWP sees. Your phone bill, your subscriptions, your equipment — all deductible. Module 11 covers every expense in detail.</p>
 
 <div class="warning-box">
-<div class="warning-title">⚠ Do This Before Your First Sale</div>
-<p>Log into your UC journal online and add a note: <em>"I am starting a self-employed business. I will report all earnings in my monthly assessment period."</em> Screenshot it. That protects you if DWP ever questions when you started.</p>
+  <div class="warning-title">⚠ Do This Before Your First Sale</div>
+  <p>Log into your UC journal online and add a note: "I am starting a self-employed business. I will report all earnings in my monthly assessment period." Screenshot it. That protects you from day one.</p>
 </div>
 
-<div class="info-box yellow">
-<div class="info-label">The Minimum Income Floor — Know This</div>
-<p>After 12 months of self-employment, DWP may apply the Minimum Income Floor — an assumed earnings level. It does NOT apply in your first 12 months. If you have a health condition limiting your capacity for work, it may not apply at all. Ask your work coach before month 12.</p>
+<!-- ── WIN 1: UC EXPENSES CALCULATOR ────────────────── -->
+<h2>Win 1 — Your <span>UC Expenses Calculator</span></h2>
+<p>Fill in your numbers below. This calculator shows you exactly how much DWP would reduce your UC — and how much you could legally save by claiming allowable expenses.</p>
+
+<div class="calc-section">
+  <div class="calc-title">UC Expenses Calculator</div>
+  <div class="calc-sub">Your personal numbers — takes 2 minutes</div>
+
+  <div class="calc-row">
+    <div class="calc-label">Monthly business income (what you earn) £</div>
+    <input type="number" class="calc-input" id="income" placeholder="e.g. 300" min="0">
+  </div>
+
+  <div class="calc-row">
+    <div class="calc-label">Phone bill per month £ (enter full bill — we'll calculate 50% business use)</div>
+    <input type="number" class="calc-input" id="phone" placeholder="e.g. 25" min="0">
+  </div>
+
+  <div class="calc-row">
+    <div class="calc-label">Monthly software/subscriptions used for business £</div>
+    <input type="number" class="calc-input" id="subs" placeholder="e.g. 8" min="0">
+  </div>
+
+  <div class="calc-row">
+    <div class="calc-label">Hours worked from home per month</div>
+    <input type="number" class="calc-input" id="hours" placeholder="e.g. 30" min="0">
+  </div>
+
+  <div class="calc-row">
+    <div class="calc-label">Any other business costs this month £ (equipment, courses, advertising)</div>
+    <input type="number" class="calc-input" id="other" placeholder="e.g. 10" min="0">
+  </div>
+
+  <button class="calc-btn" onclick="calculate()">Calculate My Numbers →</button>
+
+  <div class="calc-results" id="calcResults">
+    <div class="calc-result-row"><span class="label">Monthly income</span><span class="value" id="r-income"></span></div>
+    <div class="calc-result-row"><span class="label">Phone (50% business)</span><span class="value" id="r-phone"></span></div>
+    <div class="calc-result-row"><span class="label">Subscriptions</span><span class="value" id="r-subs"></span></div>
+    <div class="calc-result-row"><span class="label">Home office</span><span class="value" id="r-office"></span></div>
+    <div class="calc-result-row"><span class="label">Other expenses</span><span class="value" id="r-other"></span></div>
+    <div class="calc-result-row"><span class="label">Total expenses</span><span class="value" id="r-total-exp"></span></div>
+    <div class="calc-result-row"><span class="label"><strong>Profit to report to DWP</strong></span><span class="value" id="r-profit"></span></div>
+    <div class="calc-result-row"><span class="label">UC reduction on profit (55%)</span><span class="value" id="r-uc-reduction"></span></div>
+    <div class="calc-result-row saving"><span class="label">💰 Extra UC you keep by claiming expenses</span><span class="value" id="r-saving"></span></div>
+    <div class="calc-note" id="calc-note"></div>
+  </div>
 </div>
 
-<div class="prompt-box">
-<div class="prompt-label">AI Prompt — Use DeepSeek or Claude (both free)</div>
-<p>"I want to build a small business to earn extra money alongside my benefits. I'm good at <span class="fill">[list 3 things]</span>. I have about <span class="fill">[X hours]</span> per week. My biggest concern is <span class="fill">[benefits / confidence / time]</span>. Give me a realistic income target for month 1, 3, and 6. Suggest 3 business ideas that match my skills."</p>
+<!-- ── WIN 2: PITCH BUILDER ─────────────────────────── -->
+<h2>Win 2 — Your First <span>Business Pitch</span></h2>
+<p>Fill in three things about your business idea below and this tool generates a ready-to-send pitch for you. No AI account needed — it's built right into this page. You can also copy the prompt and paste it into DeepSeek or Claude for a more detailed version.</p>
+
+<div class="pitch-section">
+  <div class="pitch-title">Business Pitch Builder</div>
+  <div class="pitch-sub">Takes 2 minutes — get a real pitch you can send today</div>
+
+  <div class="pitch-row">
+    <div class="pitch-label">What are you good at or enjoy doing?</div>
+    <input type="text" class="pitch-input" id="p-skill" placeholder="e.g. designing graphics, writing, social media, cooking, fixing things">
+  </div>
+
+  <div class="pitch-row">
+    <div class="pitch-label">Who would pay you for it? (type of person or business)</div>
+    <input type="text" class="pitch-input" id="p-client" placeholder="e.g. local cafes, tradespeople, small shops, people who need CVs">
+  </div>
+
+  <div class="pitch-row">
+    <div class="pitch-label">Your town or area (or "online")</div>
+    <input type="text" class="pitch-input" id="p-location" placeholder="e.g. Manchester, Leeds, online">
+  </div>
+
+  <div class="pitch-row">
+    <div class="pitch-label">What price would you charge per month or per job? £</div>
+    <input type="text" class="pitch-input" id="p-price" placeholder="e.g. 50 per month or 30 per job">
+  </div>
+
+  <button class="pitch-btn" onclick="buildPitch()">Build My Pitch →</button>
+
+  <div class="pitch-output" id="pitchOutput">
+    <div class="pitch-output-label">✓ Your Business Pitch — Copy and Send This</div>
+    <div class="pitch-text" id="pitchText"></div>
+    <button class="copy-pitch-btn" onclick="copyPitch()">Copy Pitch</button>
+
+    <div class="deepseek-box" style="margin-top:1.25rem">
+      <div class="deepseek-label">Want a more detailed version? Copy this prompt into DeepSeek (free at deepseek.com)</div>
+      <div class="deepseek-prompt" id="deepseekPrompt"></div>
+      <button class="copy-prompt-btn" onclick="copyPrompt()">Copy DeepSeek Prompt</button>
+    </div>
+  </div>
 </div>
 
-<div class="before-next"><div class="before-title">✓ Before You Move to the Next Module — Confirm These</div><ul class="checklist"><li><strong>I have read and understood the UC taper rate maths</strong></li><li><strong>I have noted in my UC journal that I am starting a business</strong></li><li><strong>I have run the AI prompt above and written down my top business idea</strong></li><li><strong>I know which tasks need a laptop (I have access to one or know where to get one)</strong></li></ul></div>
+<h2>What's <span>In The Full Course</span></h2>
+<p>The full course is 10 more modules. Here's what you get:</p>
+<ul class="points">
+<li><strong>Module 2</strong> — Build your ideal client profile — find exactly who pays you</li>
+<li><strong>Module 3</strong> — Products to create and launch — free, paid, and recurring offers</li>
+<li><strong>Module 4</strong> — The marketing language that sells — written by AI in your voice</li>
+<li><strong>Module 5</strong> — The funnel — stranger to paying client in 4 steps</li>
+<li><strong>Module 6</strong> — 90-day marketing plan — month by month, AI-assisted</li>
+<li><strong>Module 7</strong> — 17 free AI tools — your complete virtual team</li>
+<li><strong>Module 8</strong> — Your landing page — built free, live today</li>
+<li><strong>Module 9</strong> — Complete tech setup — Zoho suite, Gumroad, Stripe, automation</li>
+<li><strong>Module 10</strong> — Your one-page pitch — AI-generated in 5 minutes</li>
+<li><strong>Module 11</strong> — Tax, DWP & keeping more money — every allowable expense</li>
+</ul>
 
-<div class="nav-footer"><span></span><span style="font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">Module 01 of 11</span><a href="https://buy.stripe.com/aFaeV6fDE0JD2Ec0T753O00" class="nav-btn primary">Get Full Course £9.99 →</a></div>
+<div class="before-next">
+  <div class="before-title">✓ Before You Buy the Full Course — Confirm These</div>
+  <ul class="checklist">
+    <li><strong>I have run the UC calculator and know my real profit figure</strong></li>
+    <li><strong>I have generated my first business pitch and saved it</strong></li>
+    <li><strong>I have noted in my UC journal that I am starting a business</strong></li>
+    <li><strong>I know which tasks need a laptop — I have access to one or know where to get one</strong></li>
+  </ul>
+</div>
+
+<div class="nav-footer">
+  <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)">Module 1 of 11 — Free</span>
+  <a href="https://thelastgiro.gumroad.com/l/thelastgiro-fullcourse" class="nav-btn primary" target="_blank">Get Full Course — £9.99 →</a>
+</div>
+
 <div class="mod-footer">
-The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
-hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
-© 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+  The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+  "Get a life, get a business, get AI, get more money"<br>
+  hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+  © 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
 </div>
+
+<script>
+// ── UC CALCULATOR ──────────────────────────────────
+function calculate() {
+  const income = parseFloat(document.getElementById('income').value) || 0;
+  const phone = parseFloat(document.getElementById('phone').value) || 0;
+  const subs = parseFloat(document.getElementById('subs').value) || 0;
+  const hours = parseFloat(document.getElementById('hours').value) || 0;
+  const other = parseFloat(document.getElementById('other').value) || 0;
+
+  // Home office flat rate
+  let office = 0;
+  if (hours >= 101) office = 26;
+  else if (hours >= 51) office = 18;
+  else if (hours >= 25) office = 10;
+
+  const phoneBusiness = phone * 0.5;
+  const totalExp = phoneBusiness + subs + office + other;
+  const profit = Math.max(0, income - totalExp);
+  const ucReduction = profit * 0.55;
+  const ucReductionWithoutExp = income * 0.55;
+  const saving = ucReductionWithoutExp - ucReduction;
+
+  document.getElementById('r-income').textContent = '£' + income.toFixed(2);
+  document.getElementById('r-phone').textContent = '-£' + phoneBusiness.toFixed(2);
+  document.getElementById('r-subs').textContent = '-£' + subs.toFixed(2);
+  document.getElementById('r-office').textContent = '-£' + office.toFixed(2) + (hours > 0 && hours < 25 ? ' (need 25+ hrs for flat rate)' : '');
+  document.getElementById('r-other').textContent = '-£' + other.toFixed(2);
+  document.getElementById('r-total-exp').textContent = '-£' + totalExp.toFixed(2);
+  document.getElementById('r-profit').textContent = '£' + profit.toFixed(2);
+  document.getElementById('r-uc-reduction').textContent = '-£' + ucReduction.toFixed(2);
+  document.getElementById('r-saving').textContent = '+£' + saving.toFixed(2) + ' per month';
+
+  let note = '';
+  if (saving > 0) {
+    note = 'By claiming £' + totalExp.toFixed(2) + ' in expenses, you save £' + saving.toFixed(2) + ' in UC every month. That is £' + (saving * 12).toFixed(2) + ' per year you keep legally.';
+  } else {
+    note = 'Add more expenses to your records to reduce your DWP profit figure. Module 11 covers every allowable expense in detail.';
+  }
+  document.getElementById('calc-note').textContent = note;
+  document.getElementById('calcResults').style.display = 'block';
+}
+
+// ── PITCH BUILDER ──────────────────────────────────
+function buildPitch() {
+  const skill = document.getElementById('p-skill').value.trim();
+  const client = document.getElementById('p-client').value.trim();
+  const location = document.getElementById('p-location').value.trim();
+  const price = document.getElementById('p-price').value.trim();
+
+  if (!skill || !client || !location) {
+    alert('Please fill in at least your skill, who you help, and your location.');
+    return;
+  }
+
+  const priceText = price ? '£' + price : 'competitive rates';
+
+  const pitch = `Hi,
+
+I help ${client} in ${location} with ${skill}.
+
+Most of the businesses I work with are too busy doing their actual job to also worry about this — so I take it off their plate completely.
+
+I charge ${priceText}. No long contracts. You can try me with one job first to see the quality before committing to anything.
+
+Happy to do a free sample this week so you can judge for yourself.
+
+Would that be useful to you?`;
+
+  const deepseekPrompt = `Write a 3-paragraph business pitch for someone who does ${skill} for ${client} in ${location}. Price: ${priceText}. Keep it plain, direct, and conversational — no corporate speak. End with an offer to do a free sample. Make it sound like a real person wrote it, not a marketing robot.`;
+
+  document.getElementById('pitchText').textContent = pitch;
+  document.getElementById('deepseekPrompt').textContent = deepseekPrompt;
+  document.getElementById('pitchOutput').style.display = 'block';
+  document.getElementById('pitchOutput').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function copyPitch() {
+  const text = document.getElementById('pitchText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-pitch-btn');
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.textContent = 'Copy Pitch', 2000);
+  });
+}
+
+function copyPrompt() {
+  const text = document.getElementById('deepseekPrompt').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-prompt-btn');
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.textContent = 'Copy DeepSeek Prompt', 2000);
+  });
+}
+</script>
 
 </body>
 </html>

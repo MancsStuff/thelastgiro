@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Giro — Bonus: Build & Launch Your App</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f0e8;--yellow:#f5d800;--red:#e02020;--green:#00c853;--grey:#141414;--border:#2a2a2a;--muted:#666;--orange:#e87c2b;--purple:#7c3aed}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.7;max-width:800px;margin:0 auto;padding:2rem 1.5rem}
+.mod-header{border-bottom:3px solid var(--orange);padding-bottom:1.5rem;margin-bottom:2.5rem}
+.bonus-badge{display:inline-block;background:var(--orange);color:#000;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-bottom:.75rem}
+.mod-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+.mod-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:#1a1a1a;line-height:1;margin-bottom:-0.5rem}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,4.5rem);color:var(--white);line-height:.9;margin-bottom:.75rem}
+h1 span{color:var(--orange)}
+.mod-intro{font-size:1rem;color:#999;max-width:620px;line-height:1.7}
+h2{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--white);margin:2.5rem 0 .75rem;padding-top:2rem;border-top:1px solid var(--border);line-height:1}
+h2 span{color:var(--orange)}
+h3{font-size:1rem;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem}
+p{color:#bbb;margin-bottom:1rem;font-size:.95rem;line-height:1.75}
+p strong{color:var(--white)}
+.path-box{border:2px solid var(--border);padding:1.5rem;margin:1.5rem 0;position:relative}
+.path-box.easy{border-color:var(--green)}
+.path-box.hard{border-color:var(--orange)}
+.path-label{position:absolute;top:-0.75rem;left:1rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;font-weight:700}
+.path-box.easy .path-label{background:var(--green);color:#000}
+.path-box.hard .path-label{background:var(--orange);color:#000}
+.path-box h3{margin-top:0.25rem}
+.path-box p{margin:0;font-size:.9rem;color:#bbb}
+.path-box p+p{margin-top:.5rem}
+.info-box{background:var(--grey);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.info-box.green{border-left:4px solid var(--green)}
+.info-box.red{border-left:4px solid var(--red)}
+.info-box.yellow{border-left:4px solid var(--yellow)}
+.info-box.orange{border-left:4px solid var(--orange)}
+.info-box.purple{border-left:4px solid var(--purple)}
+.info-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.info-box.green .info-label{color:var(--green)}
+.info-box.red .info-label{color:var(--red)}
+.info-box.yellow .info-label{color:var(--yellow)}
+.info-box.orange .info-label{color:var(--orange)}
+.info-box.purple .info-label{color:var(--purple)}
+.info-box p{margin:0;color:#ccc;font-size:.9rem}
+.info-box p+p{margin-top:.5rem}
+.warning-box{background:#1a0000;border:2px solid var(--red);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.warning-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.warning-box p{margin:0;color:#ccc;font-size:.9rem}
+.warning-box p+p{margin-top:.5rem}
+.success-box{background:#001a00;border:2px solid var(--green);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.success-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem}
+.success-box p{margin:0;color:#ccc;font-size:.9rem}
+.success-box p+p{margin-top:.5rem}
+.prompt-box{background:#1a0a00;border-left:4px solid var(--orange);padding:1rem 1.25rem;margin:1.5rem 0}
+.prompt-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+.prompt-box p{color:#ccc;font-style:italic;margin:0;font-size:.9rem}
+.fill{color:var(--orange);font-style:normal;font-weight:600}
+ul.points{list-style:none;margin:.75rem 0 1.25rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+ul.points li{color:#bbb;padding:.6rem .9rem;background:var(--grey);border-left:2px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:flex-start}
+ul.points li::before{content:"→";color:var(--orange);font-family:'DM Mono',monospace;flex-shrink:0;margin-top:.1rem}
+ul.points li strong{color:var(--white)}
+.step-block{background:var(--grey);border:1px solid var(--border);padding:1.25rem;margin-bottom:.75rem;border-left:3px solid var(--orange)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--orange);line-height:1;margin-bottom:.25rem}
+.step-title{font-weight:700;font-size:.95rem;color:var(--white);margin-bottom:.4rem}
+.step-block p{margin:0;font-size:.88rem;color:#bbb}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin:1.5rem 0}
+.compare-col{background:var(--grey);padding:1.25rem}
+.compare-head{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.compare-col.easy .compare-head{color:var(--green)}
+.compare-col.hard .compare-head{color:var(--orange)}
+.compare-col p{font-size:.85rem;color:#bbb;margin-bottom:.5rem}
+.compare-col p:last-child{margin:0}
+.compare-col strong{color:var(--white)}
+.checklist{list-style:none;margin:1rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.checklist li{display:flex;gap:.75rem;align-items:flex-start;color:#bbb;font-size:.9rem;padding:.5rem .75rem;background:var(--grey);border:1px solid var(--border)}
+.checklist li::before{content:"☐";color:var(--orange);flex-shrink:0;font-size:1rem;line-height:1.4;font-family:'DM Mono',monospace}
+.checklist li strong{color:var(--white)}
+.before-next{background:#0a0800;border:2px solid var(--orange);padding:1.5rem;margin:2.5rem 0}
+.before-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.real-story{background:#0a0a1a;border:2px solid var(--yellow);padding:1.5rem;margin:1.5rem 0}
+.real-story-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.real-story p{margin:0;color:#ccc;font-size:.9rem;line-height:1.7}
+.real-story p+p{margin-top:.5rem}
+.section-divider{border:none;border-top:3px solid var(--orange);margin:3rem 0}
+.nav-footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid var(--border);padding:.6rem 1.25rem;background:transparent}
+.nav-btn.primary{background:var(--orange);color:#000;border-color:var(--orange)}
+.mod-footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:.6rem;color:#333;text-align:center;line-height:1.8}
+@media(max-width:600px){.compare-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="mod-header">
+  <div class="bonus-badge">★ Bonus Module — Gold & Above</div>
+  <div class="mod-tag">The Last Giro — Bonus Course</div>
+  <div class="mod-num">BONUS</div>
+  <h1>Build & Launch<br><span>Your App</span></h1>
+  <p class="mod-intro">Two real paths. One fast and simple using Lovable. One harder, longer, but completely yours. Both end with a real app live in the world. This module shows you exactly how — based on real app builds, not theory.</p>
+</div>
+
+<div class="real-story">
+  <div class="real-story-title">📖 Built From Real Experience</div>
+  <p>This bonus module is based on two real apps built using these exact methods. Everything in this module comes from actually building them — the mistakes, the wins, the time it really takes.</p>
+  <p>Everything in this module comes from actually building both. The mistakes, the wins, the time it really takes, the costs, the tools. You are getting the unfiltered version — not a sales pitch for any platform.</p>
+</div>
+
+<h2>First — <span>Do You Actually Need an App?</span></h2>
+<p>Before you spend a single hour building, answer these honestly:</p>
+<ul class="points">
+<li><strong>Can your idea work as a website first?</strong> Most apps start as websites. If yes — start there. Prove the concept. Then build the app.</li>
+<li><strong>Does it need to work offline?</strong> If yes — you likely need a proper app. If no — a mobile-optimised website might be enough.</li>
+<li><strong>Do you need device features?</strong> Camera, GPS, notifications, contacts — these push you toward a real app.</li>
+<li><strong>Are people already searching for this?</strong> Search the App Store and Google Play for similar apps. If nothing exists — there may be a reason. If lots exist — that's validation AND competition.</li>
+</ul>
+
+<div class="info-box yellow">
+  <div class="info-label">The honest truth</div>
+  <p>Most app ideas don't need an app. They need a landing page, a clear offer, and paying users first. Build the audience before you build the app. Both real apps this module is based on started as simple concepts — not code. Neither needed to be an app on day one.</p>
+</div>
+
+<h2>The Two <span>Paths</span></h2>
+<p>There are two ways to build an app. Neither is wrong. They're right for different people and different situations.</p>
+
+<div class="compare-grid">
+  <div class="compare-col easy">
+    <div class="compare-head">Path A — Lovable</div>
+    <p><strong>What it is:</strong> AI-powered app builder. Describe your app, Lovable builds it.</p>
+    <p><strong>Time to launch:</strong> Days to weeks</p>
+    <p><strong>Cost:</strong> From £20/month</p>
+    <p><strong>Coding needed:</strong> None</p>
+    <p><strong>Best for:</strong> Validating ideas fast, non-technical founders, MVP in days</p>
+    <p><strong>Limitation:</strong> You're on their platform. Less control over the code.</p>
+  </div>
+  <div class="compare-col hard">
+    <div class="compare-head">Path B — Build Your Own</div>
+    <p><strong>What it is:</strong> Code your app using free tools and AI assistance</p>
+    <p><strong>Time to launch:</strong> Weeks to months</p>
+    <p><strong>Cost:</strong> Near £0 to start</p>
+    <p><strong>Coding needed:</strong> Basic — AI writes most of it</p>
+    <p><strong>Best for:</strong> Full ownership, custom features, long-term business</p>
+    <p><strong>Limitation:</strong> Harder, longer, steeper learning curve. Achievable. Not easy.</p>
+  </div>
+</div>
+
+<div class="warning-box">
+  <div class="warning-title">⚠ Be Honest With Yourself Before Choosing</div>
+  <p>Path B is achievable. The Manchester Maze — a full interactive browser game — was built by Christopher using AI tools with no prior coding background. But it took weeks of consistent work, frustration, and debugging.</p>
+  <p><strong>If you want to validate your idea fast: Path A.</strong> Build it in a week, show it to potential users, see if they want it. Then decide if it's worth building properly.</p>
+  <p><strong>If you want full ownership and you're prepared to put the hours in: Path B.</strong> AI writes most of the code. You direct it. You own everything.</p>
+</div>
+
+<hr class="section-divider">
+
+<h2>Path A — <span>Lovable</span></h2>
+<p>Lovable (lovable.dev) is the fastest way to go from app idea to working prototype. You describe what you want in plain English and it builds a React web app. Works on phone and desktop. Looks professional.</p>
+
+<div class="step-block">
+  <div class="step-num">01</div>
+  <div class="step-title">Define Your App in One Paragraph</div>
+  <p>Before you touch Lovable, write one paragraph describing your app. Include: what it does, who uses it, the main screen, and the one thing users do most. The clearer this is, the better Lovable builds it.</p>
+</div>
+
+<div class="info-box orange">
+  <div class="info-label">Your App Description — Fill This In</div>
+  <p>"A <span class="fill">[type of app]</span> for people who <span class="fill">[describe your target user]</span>. Users can <span class="fill">[main action 1]</span>, <span class="fill">[main action 2]</span>, and <span class="fill">[main action 3]</span>."</p>
+  <p>Keep it to 3 sentences maximum. If you can't describe your app in 3 sentences — simplify the idea first.</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">02</div>
+  <div class="step-title">Sign Up to Lovable</div>
+  <p>Go to lovable.dev. Sign up for a free account. The free tier lets you build and test. You pay when you want to deploy and share with real users. Start free.</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">03</div>
+  <div class="step-title">Your First Prompt — The Foundation</div>
+  <p>This is the most important step. A weak first prompt means hours of fixing. A strong first prompt means a working app in minutes.</p>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Lovable Starting Prompt — copy and adapt this</div>
+  <p>"Build me a web app called <span class="fill">[App Name]</span>. It does: <span class="fill">[one sentence description]</span>. The main users are <span class="fill">[who uses it]</span>. The app needs these screens: (1) <span class="fill">[screen 1 — e.g. home/dashboard]</span>, (2) <span class="fill">[screen 2 — e.g. search/browse]</span>, (3) <span class="fill">[screen 3 — e.g. profile/settings]</span>. The most important action a user does is <span class="fill">[main action]</span>. Design style: clean, modern, mobile-first. Colour scheme: <span class="fill">[your colours]</span>. Use a simple card-based layout. Include a navigation bar at the bottom for mobile."</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">04</div>
+  <div class="step-title">Iterate — Fix It Conversation by Conversation</div>
+  <p>Lovable builds your first version. It won't be perfect. That's normal. Now you iterate. Each message refines one thing at a time.</p>
+</div>
+
+<ul class="points">
+  <li><strong>Fix one thing per message</strong> — "Change the header colour to #f5d800" not "Fix the header, footer, and make the buttons bigger"</li>
+  <li><strong>Describe what you see, not what you want</strong> — "The search button is not visible on mobile" not "Make the search work better"</li>
+  <li><strong>Add features one at a time</strong> — get the core working before adding complexity</li>
+  <li><strong>Save versions you like</strong> — Lovable has version history. Use it before making big changes.</li>
+</ul>
+
+<div class="step-block">
+  <div class="step-num">05</div>
+  <div class="step-title">Connect a Database (if needed)</div>
+  <p>If your app needs to store user data — accounts, posts, saved items — connect Supabase. It's free and Lovable integrates directly.</p>
+</div>
+
+<ul class="points">
+  <li>In Lovable: click Connect Supabase</li>
+  <li>Sign up at supabase.com — free tier is generous</li>
+  <li>Lovable handles the connection automatically — you don't write database code</li>
+  <li>Supabase stores your users, their data, and handles authentication</li>
+</ul>
+
+<div class="step-block">
+  <div class="step-num">06</div>
+  <div class="step-title">Deploy — Make It Live</div>
+  <p>When you're happy with your app, deploy it. Lovable gives you a URL — share it with real users immediately. This is your MVP (minimum viable product). Get real feedback before building more.</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">07</div>
+  <div class="step-title">Get Real Users — Before You Build More</div>
+  <p>Share your URL with 10 real people who match your target user. Watch how they use it. Ask: what's confusing? What's missing? What would make you come back? Build the next version based on their answers — not your assumptions.</p>
+</div>
+
+<div class="success-box">
+  <div class="success-title">✓ Lovable Time Estimate</div>
+  <p>Day 1: Write your app description and first prompt. First working version in Lovable.</p>
+  <p>Days 2-5: Iterate. Fix and refine. Add core features one by one.</p>
+  <p>Day 6-7: Deploy. Share with first users. Collect feedback.</p>
+  <p>Week 2+: Build based on real user feedback.</p>
+</div>
+
+<div class="info-box green">
+  <div class="info-label">What to charge — turning your Lovable app into income</div>
+  <p>Free app + premium features (freemium) — most common model</p>
+  <p>One-off purchase — £1.99–£4.99 on App Store / Google Play</p>
+  <p>Subscription — £2.99–£9.99/month for ongoing access</p>
+  <p>B2B tool — sell access to businesses at £20–£100/month</p>
+</div>
+
+<hr class="section-divider">
+
+<h2>Path B — <span>Build Your Own</span></h2>
+
+<div class="warning-box">
+  <div class="warning-title">⚠ Read This First — Honest Warning</div>
+  <p>Path B is harder and longer than Path A. That is a fact. You will hit walls. Things will break. You will spend hours on things that take experienced developers minutes.</p>
+  <p><strong>But it is achievable.</strong> The Manchester Maze — a full interactive browser game with multiple endings, inventory system, and 3D transitions — was built using this exact approach by someone with no coding background. AI writes the code. You direct it and debug it.</p>
+  <p>Expect 4-12 weeks for a first working version depending on complexity. Set aside at least 2 hours per day. Use Claude or DeepSeek as your developer. Ask it to explain every line of code it writes.</p>
+</div>
+
+<h3>The Tech Stack — What You Need to Learn (Not Much)</h3>
+<p>You don't need to become a developer. You need to understand enough to direct an AI developer. Here's the minimum:</p>
+
+<ul class="points">
+  <li><strong>HTML</strong> — the structure of a page. You already know this from building The Last Giro website.</li>
+  <li><strong>CSS</strong> — the styling. Colours, fonts, layout.</li>
+  <li><strong>JavaScript</strong> — the behaviour. What happens when a button is clicked.</li>
+  <li><strong>React (optional)</strong> — for more complex apps. AI will write this for you. You just need to understand what components are.</li>
+  <li><strong>GitHub</strong> — where you store and deploy your code. You already know this too.</li>
+</ul>
+
+<div class="info-box purple">
+  <div class="info-label">The AI Developer Relationship</div>
+  <p>Think of Claude or DeepSeek as your developer. You are the product manager. You tell them what to build, describe the problem, and they write the code. You copy it, test it, and report back what happened. That's the entire workflow.</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">01</div>
+  <div class="step-title">Define Your App — Brutally Simple First Version</div>
+  <p>Your first version should do ONE thing. Not ten things. One. Your v1 should do one thing only. Everything else comes later. Pick the single most important action your user does and build just that.</p>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">AI Prompt — Plan Your App</div>
+  <p>"I want to build a simple web app called <span class="fill">[App Name]</span>. It does: <span class="fill">[one sentence]</span>. The target user is <span class="fill">[who]</span>. What is the absolute minimum first version — the simplest possible thing that proves the concept works? List only the essential features for v1. Then list what comes in v2 and v3. Help me avoid feature creep."</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">02</div>
+  <div class="step-title">Choose Your Tools — All Free</div>
+  <p>Everything you need to build and host a web app for free:</p>
+</div>
+
+<ul class="points">
+  <li><strong>Code editor:</strong> VS Code — free, download at code.visualstudio.com. Works on laptop only.</li>
+  <li><strong>AI developer:</strong> Claude or DeepSeek — write every line of code for you</li>
+  <li><strong>Hosting:</strong> GitHub Pages — free, you already know how to use it</li>
+  <li><strong>Database:</strong> Supabase — free tier, 500MB storage, handles users and data</li>
+  <li><strong>Authentication:</strong> Supabase Auth — built in, handles login/signup for free</li>
+  <li><strong>Images:</strong> Cloudinary free tier — store and serve images</li>
+  <li><strong>AI features in your app:</strong> Google AI Studio free tier — add AI to your app</li>
+</ul>
+
+<div class="step-block">
+  <div class="step-num">03</div>
+  <div class="step-title">Build File by File — Never All At Once</div>
+  <p>Every app is just files. Start with one HTML file. Get it working. Add CSS. Get that working. Add JavaScript. One thing at a time. Never ask AI to build the whole app at once — it won't work and you won't understand it.</p>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">AI Prompt — Build File by File</div>
+  <p>"I am building <span class="fill">[App Name]</span>. I want to start with just the homepage — a single HTML file. It should show: <span class="fill">[what's on the home screen]</span>. No backend yet. No database. Just a clean, mobile-first HTML page that looks professional. Use these colours: <span class="fill">[your colours]</span>. Explain what each section of the code does."</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">04</div>
+  <div class="step-title">Debugging — What to Do When It Breaks</div>
+  <p>It will break. That's not failure — that's development. Here's how to fix it:</p>
+</div>
+
+<ul class="points">
+  <li><strong>Open browser developer tools</strong> — press F12 on laptop. Go to Console tab. Red text = the error. Copy the exact error message.</li>
+  <li><strong>Paste the error into Claude</strong> — "I got this error: [paste error]. Here is my code: [paste code]. What's wrong and how do I fix it?"</li>
+  <li><strong>Fix one error at a time</strong> — fix the first error before looking at the next one</li>
+  <li><strong>If completely stuck</strong> — paste your entire file to Claude and say "This isn't working as expected. [Describe what happens vs what should happen]. Find the problem."</li>
+</ul>
+
+<div class="step-block">
+  <div class="step-num">05</div>
+  <div class="step-title">Add a Database (Supabase)</div>
+  <p>When your front end works — add Supabase to store data. This is where most people get stuck. Take it slow.</p>
+</div>
+
+<ul class="points">
+  <li>Sign up at supabase.com — free</li>
+  <li>Create a new project</li>
+  <li>Create a table (like a spreadsheet) for your data</li>
+  <li>Copy your Supabase URL and API key</li>
+  <li>Ask Claude: "Add Supabase to my app so it can save [type of data]. Here is my Supabase URL and key. Here is my current code."</li>
+</ul>
+
+<div class="step-block">
+  <div class="step-num">06</div>
+  <div class="step-title">Deploy to GitHub Pages</div>
+  <p>You already know how to do this from The Last Giro. Same process. Push your files to GitHub, enable Pages, connect your domain.</p>
+</div>
+
+<div class="step-block">
+  <div class="step-num">07</div>
+  <div class="step-title">If You Want a Native App (App Store / Google Play)</div>
+  <p>A web app can be converted to a native app using Capacitor (free). This wraps your web app in a native shell so it appears in the App Store and Google Play. You don't rewrite anything.</p>
+</div>
+
+<ul class="points">
+  <li>capacitorjs.com — free and open source</li>
+  <li>Works with any web app (HTML/CSS/JS or React)</li>
+  <li>Apple Developer account to publish on App Store: £79/year</li>
+  <li>Google Play Developer account: one-off £20</li>
+  <li>This step needs a laptop. Ask Claude to walk you through the Capacitor setup step by step.</li>
+</ul>
+
+<div class="success-box">
+  <div class="success-title">✓ Path B Time Estimate — Honest</div>
+  <p>Week 1-2: Homepage and core UI working</p>
+  <p>Week 3-4: Database connected, basic features working</p>
+  <p>Week 5-6: Testing, fixing, refining</p>
+  <p>Week 7-8: Deploy. Share with real users. Collect feedback.</p>
+  <p>Month 3+: Build version 2 based on real user feedback.</p>
+  <p>App Store submission: add 1-2 weeks for Apple review process.</p>
+</div>
+
+<hr class="section-divider">
+
+<h2>Making Money <span>From Your App</span></h2>
+<p>An app is only a business if people pay for it. Here are the real revenue models — what works, what doesn't.</p>
+
+<div class="path-box easy">
+  <span class="path-label">Easiest</span>
+  <h3>Freemium</h3>
+  <p>Free to download. Basic features free. Premium features behind a paywall. Most successful apps use this. Works when your free version is genuinely useful and your premium adds real value — not just removing ads.</p>
+  <p><strong>Your example:</strong> Free to use the core feature. Premium to unlock <span class="fill">[what extra value does paid give?]</span>. Make the free version genuinely useful — not crippled.</p>
+</div>
+
+<div class="path-box easy" style="margin-top:.75rem">
+  <span class="path-label">Simple</span>
+  <h3>One-off Purchase</h3>
+  <p>£1.99–£9.99 to download. No subscription. Simple. Works best for tools and utilities where the value is obvious upfront.</p>
+</div>
+
+<div class="path-box hard" style="margin-top:.75rem">
+  <span class="path-label">Recurring</span>
+  <h3>Subscription</h3>
+  <p>Monthly or annual fee. Best for apps that provide ongoing value — new content, community features, updates. Works when users need your app regularly and it keeps getting better.</p>
+</div>
+
+<div class="warning-box">
+  <div class="warning-title">⚠ Don't Monetise Too Early</div>
+  <p>Get 100 real users first. Understand what they love. Then charge. Apps that try to monetise before they have proven value almost always fail. Your first job is to get people using it. Your second job is to charge.</p>
+</div>
+
+<h2>Protecting Your <span>App Idea</span></h2>
+<ul class="points">
+  <li><strong>Name</strong> — check Companies House, App Store, Google Play, and trademark register before naming your app</li>
+  <li><strong>Trademark</strong> — if it's a serious business, file a trademark. Kuits Solicitors (0161 832 3434) handle this for Mancsstuff</li>
+  <li><strong>Copyright</strong> — your code and content is automatically yours under UK law. Keep records of creation dates.</li>
+  <li><strong>Privacy Policy</strong> — required for App Store and Google Play. Required if you collect any user data. Free generators at termsfeed.com</li>
+  <li><strong>ICO registration</strong> — if you collect personal data you must register with ICO (ico.org.uk). £40/year for small businesses</li>
+</ul>
+
+<h2>The Most Important <span>Lesson</span></h2>
+<p>Most apps fail not because they're badly built — but because nobody wanted them. The app stores have millions of apps that nobody uses.</p>
+<p>Before you write a single line of code — <strong>find 10 people who say they would pay for your app.</strong> Not "that sounds interesting." Not "yeah I'd probably use that." Pay. Real money. If you can't find 10 people willing to pay before you've built it — you need a different idea or a different market.</p>
+
+<div class="before-next">
+  <div class="before-title">✓ Before You Start Building — Confirm These</div>
+  <ul class="checklist">
+    <li><strong>I have defined my app in one paragraph — what it does, who uses it, the one main action</strong></li>
+    <li><strong>I have checked the App Store and Google Play for similar apps — I know my competition</strong></li>
+    <li><strong>I have identified 10 real people who would pay for my app</strong></li>
+    <li><strong>I have chosen Path A (Lovable — fast) or Path B (build your own — full control)</strong></li>
+    <li><strong>I understand Path B is harder and longer but achievable — I am prepared for that</strong></li>
+    <li><strong>I have a laptop for this module — both paths require a laptop</strong></li>
+  </ul>
+</div>
+
+<div class="nav-footer">
+  <a href="the-last-giro-module-11.html" class="nav-btn">← Module 11</a>
+  <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)">Bonus Module — Gold & Above</span>
+  <a href="https://thelastgiro.gumroad.com/l/thelastgiro-gold" class="nav-btn primary" target="_blank">Join Gold Community →</a>
+</div>
+
+<div class="mod-footer">
+  The Last Giro — A Mancsstuff Course by Christopher Ryan Leece<br>
+  "Get a life, get a business, get AI, get more money"<br>
+  hello@thelastgiro.com &nbsp;|&nbsp; @TheLastGiro &nbsp;|&nbsp; 07402 692728 &nbsp;|&nbsp; ICO: 00013889232<br>
+  © 2026 Christopher Ryan Leece t/a Mancsstuff. All rights reserved.
+</div>
+
+</body>
+</html>

@@ -283,12 +283,6 @@ footer a:hover{color:var(--yellow)}
 </head>
 <body>
 
-<!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
-  <p>This site uses cookies to improve your experience. By continuing you agree to our <a href="#legal">privacy policy</a>. ICO Reg: 00013889232</p>
-  <button class="cookie-btn" onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookie_ok','1')">Got It</button>
-</div>
-
 <!-- NAV -->
 <nav class="topnav">
   <a href="#" class="nav-logo">The Last Giro</a>
@@ -537,11 +531,6 @@ footer a:hover{color:var(--yellow)}
 </footer>
 
 <script>
-// Cookie banner
-if(localStorage.getItem('cookie_ok')){
-  document.getElementById('cookieBanner').style.display='none';
-}
-
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
@@ -561,6 +550,41 @@ Bookings.buttonModal({
   position: "bottom-right"
 });
 </script>
-<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.eu/widget?wc=siq3112fa71a595abf5dd74b1c30760d979e15295f7bdfd507fbe4eed04dbfc6f1d" defer></script>
+<!-- PECR-COMPLIANT COOKIE BANNER -->
+<style>
+#thelastgiro-cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#1a1d27;color:#e8e8e8;padding:16px 20px;z-index:99999;display:flex;flex-direction:column;gap:12px;border-top:3px solid #f5d800;font-family:'Barlow',Arial,sans-serif;font-size:14px;line-height:1.5}
+#thelastgiro-cookie-banner p{margin:0}
+#thelastgiro-cookie-banner a{color:#f5d800;text-decoration:underline}
+.tlg-cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+.tlg-cookie-btn{padding:10px 20px;border:none;font-size:14px;font-weight:bold;cursor:pointer;font-family:'Barlow',Arial,sans-serif}
+.tlg-cookie-accept{background:#f5d800;color:#080808}
+.tlg-cookie-reject{background:transparent;color:#e8e8e8;border:1px solid #555}
+.tlg-cookie-btn:hover{opacity:.85}
+@media(min-width:600px){#thelastgiro-cookie-banner{flex-direction:row;align-items:center;justify-content:space-between}#thelastgiro-cookie-banner p{max-width:65%}}
+</style>
+<div id="thelastgiro-cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to run our live chat and understand how people find us. No tracking without your say-so. <a href="privacy-policy.html">Privacy Policy</a></p>
+  <div class="tlg-cookie-btns">
+    <button class="tlg-cookie-btn tlg-cookie-accept" onclick="tlgAccept()">Yes, that's fine</button>
+    <button class="tlg-cookie-btn tlg-cookie-reject" onclick="tlgReject()">No thanks</button>
+  </div>
+</div>
+<script>
+(function(){
+  var c=localStorage.getItem('tlg_cookie_consent');
+  if(c==='accepted'){document.getElementById('thelastgiro-cookie-banner').style.display='none';loadSalesIQ();}
+  else if(c==='rejected'){document.getElementById('thelastgiro-cookie-banner').style.display='none';}
+})();
+function tlgAccept(){localStorage.setItem('tlg_cookie_consent','accepted');document.getElementById('thelastgiro-cookie-banner').style.display='none';loadSalesIQ();}
+function tlgReject(){localStorage.setItem('tlg_cookie_consent','rejected');document.getElementById('thelastgiro-cookie-banner').style.display='none';}
+function loadSalesIQ(){
+  window.$zoho=window.$zoho||{};
+  $zoho.salesiq=$zoho.salesiq||{widgetcode:"siq3112fa71a595abf5dd74b1c30760d979e15295f7bdfd507fbe4eed04dbfc6f1d",values:{},ready:function(){}};
+  var s=document.createElement("script");
+  s.type="text/javascript";s.id="zsiqscript";s.defer=true;
+  s.src="https://salesiq.zohopublic.eu/widget?wc=siq3112fa71a595abf5dd74b1c30760d979e15295f7bdfd507fbe4eed04dbfc6f1d";
+  document.body.appendChild(s);
+}
+</script>
 </body>
 </html>
